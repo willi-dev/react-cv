@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import './dashboard.css';
+
+import MainProfile from './MainProfile';
+import PersonalDetail from './PersonalDetail';
+import Work from './Work';
+import Project from './Project';
+import Education from './Education';
+import Skill from './Skill';
+import Training from './Training';
+import Publication from './Publication';
 
 class Dashboard extends Component {
   
@@ -35,16 +44,16 @@ class Dashboard extends Component {
                   <Link to='/dashboard/work'>Work Experiences</Link>
                 </li>
                 <li className="side-menu__item">
-                  <Link to='/dashboard/projects'>Projects</Link>
+                  <Link to='/dashboard/project'>Projects</Link>
                 </li>
                 <li className="side-menu__item">
-                  <Link to='/dashboard/educations'>Education</Link>
+                  <Link to='/dashboard/education'>Education</Link>
                 </li>
                 <li className="side-menu__item">
                   <Link to='/dashboard/skill'>Skill</Link>
                 </li>
                 <li className="side-menu__item">
-                  <Link to='/dashbaord/training'>Training</Link>
+                  <Link to='/dashboard/training'>Training</Link>
                 </li>
                 <li className="side-menu__item">
                   <Link to='/dashboard/publication'>Publication & Research</Link>
@@ -58,8 +67,15 @@ class Dashboard extends Component {
                 <i className="material-icons">menu</i>
               </span>
 
-              <h1 className="display-4 dashboard-title">Main Profile</h1>
-              <hr/>
+              <Route exact path={`${this.props.match.path}`} component={MainProfile} />
+              <Route path={`${this.props.match.path}/main-profile`} component={MainProfile} />
+              <Route path={`${this.props.match.path}/personal-detail`} component={PersonalDetail} />
+              <Route path={`${this.props.match.path}/work`} component={Work} />
+              <Route path={`${this.props.match.path}/project`} component={Project} />
+              <Route path={`${this.props.match.path}/education`} component={Education} />
+              <Route path={`${this.props.match.path}/skill`} component={Skill} />
+              <Route path={`${this.props.match.path}/training`} component={Training} />
+              <Route path={`${this.props.match.path}/publication`} component={Publication} />
               
             </div>  
           </div>
