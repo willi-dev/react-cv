@@ -35,7 +35,7 @@ class Dashboard extends Component {
             <div className={this.state.menuOpen ? 'side-menu side-menu__offcanvas side-menu--open' : 'side-menu side-menu__offcanvas'}>
               <ul className="side-menu__dashboard">
                 <li className="side-menu__item">
-                  <Link to='/dashboard/main-profile'>Main Profile</Link>
+                  <Link to='/dashboard/'>Main Profile</Link>
                 </li>
                 <li className="side-menu__item">
                   <Link to='/dashboard/personal-detail'>Personal Detail</Link>
@@ -64,11 +64,10 @@ class Dashboard extends Component {
             </div>
             <div className={this.state.menuOpen ? 'col-md-12 main-content main-content--resize' : 'col-md-12 main-content'}>
               <span className="open-menu" onClick={this.onClickMenu}>
-                <i className="material-icons">menu</i>
+                <i className="material-icons">{this.state.menuOpen ? 'close' : 'menu'}</i>
               </span>
 
               <Route exact path={`${this.props.match.path}`} component={MainProfile} />
-              <Route path={`${this.props.match.path}/main-profile`} component={MainProfile} />
               <Route path={`${this.props.match.path}/personal-detail`} component={PersonalDetail} />
               <Route path={`${this.props.match.path}/work`} component={Work} />
               <Route path={`${this.props.match.path}/project`} component={Project} />
