@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './dashboard.css';
 
+import SidebarDashboard from './SidebarDashboard';
 import MainProfile from './MainProfile';
 import PersonalDetail from './PersonalDetail';
 import Work from './Work';
@@ -11,13 +12,23 @@ import Skill from './Skill';
 import Training from './Training';
 import Publication from './Publication';
 
+// import _ from 'lodash';
+
 class Dashboard extends Component {
   
   constructor(props){
     super(props);
     this.onClickMenu = this.onClickMenu.bind(this);
     this.state = {
-      menuOpen: false
+      menuOpen: false,
+      // education: [],
+      // mainprofile: [],
+      // personaldetail: [],
+      // publication: [],
+      // related: [],
+      // skill: [],
+      // training: [],
+      // work: []
     };
   }
   
@@ -32,41 +43,11 @@ class Dashboard extends Component {
       <div>
         <div className={this.state.menuOpen ? 'container-fluid container-hidden' : 'container-fluid'}>
           <div className="row">
-            <div className={this.state.menuOpen ? 'side-menu side-menu__offcanvas side-menu--open' : 'side-menu side-menu__offcanvas'}>
-              <ul className="side-menu__dashboard">
-                <li className="side-menu__item">
-                  <Link to='/dashboard/'>Main Profile</Link>
-                </li>
-                <li className="side-menu__item">
-                  <Link to='/dashboard/personal-detail'>Personal Detail</Link>
-                </li>
-                <li className="side-menu__item">
-                  <Link to='/dashboard/work'>Work Experiences</Link>
-                </li>
-                <li className="side-menu__item">
-                  <Link to='/dashboard/project'>Projects</Link>
-                </li>
-                <li className="side-menu__item">
-                  <Link to='/dashboard/education'>Education</Link>
-                </li>
-                <li className="side-menu__item">
-                  <Link to='/dashboard/skill'>Skill</Link>
-                </li>
-                <li className="side-menu__item">
-                  <Link to='/dashboard/training'>Training</Link>
-                </li>
-                <li className="side-menu__item">
-                  <Link to='/dashboard/publication'>Publication & Research</Link>
-                </li>
-                <li className="side-menu__item">
-                </li>
-              </ul>
-            </div>
+            <SidebarDashboard menuOpen={this.state.menuOpen}/>
             <div className={this.state.menuOpen ? 'col-md-12 main-content main-content--resize' : 'col-md-12 main-content'}>
               <span className="open-menu" onClick={this.onClickMenu}>
                 <i className="material-icons">{this.state.menuOpen ? 'close' : 'menu'}</i>
               </span>
-
               <Route exact path={`${this.props.match.path}`} component={MainProfile} />
               <Route path={`${this.props.match.path}/personal-detail`} component={PersonalDetail} />
               <Route path={`${this.props.match.path}/work`} component={Work} />
@@ -75,7 +56,6 @@ class Dashboard extends Component {
               <Route path={`${this.props.match.path}/skill`} component={Skill} />
               <Route path={`${this.props.match.path}/training`} component={Training} />
               <Route path={`${this.props.match.path}/publication`} component={Publication} />
-              
             </div>  
           </div>
         </div>
