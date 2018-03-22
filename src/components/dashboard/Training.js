@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStateTraining from '../../store/dashboard/training/mapStateAction';
+import dispatchStateTraining from '../../store/dashboard/training/dispatchStateAction';
 
 class Training extends Component {
+
+  componentWillMount() {
+    this.props.fetchTraining();
+  }
   
   render(){
     return (
@@ -12,4 +19,4 @@ class Training extends Component {
   }
 }
 
-export default Training;
+export default connect(mapStateTraining, dispatchStateTraining)(Training);

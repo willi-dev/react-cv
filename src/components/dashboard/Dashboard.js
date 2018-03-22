@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './dashboard.css';
-
 import SidebarDashboard from './SidebarDashboard';
 import MainProfile from './MainProfile';
 import PersonalDetail from './PersonalDetail';
@@ -12,8 +11,6 @@ import Skill from './Skill';
 import Training from './Training';
 import Publication from './Publication';
 
-// import _ from 'lodash';
-
 class Dashboard extends Component {
   
   constructor(props){
@@ -21,14 +18,6 @@ class Dashboard extends Component {
     this.onClickMenu = this.onClickMenu.bind(this);
     this.state = {
       menuOpen: false,
-      // education: [],
-      // mainprofile: [],
-      // personaldetail: [],
-      // publication: [],
-      // related: [],
-      // skill: [],
-      // training: [],
-      // work: []
     };
   }
   

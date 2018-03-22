@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStatePublication from '../../store/dashboard/publication/mapStateAction';
+import dispatchStatePublication from '../../store/dashboard/publication/dispatchStateAction';
 
 class Publication extends Component {
+  
+  componentWillMount() {
+    this.props.fetchPublication();
+  }
   
   render() {
     return (
@@ -12,4 +19,4 @@ class Publication extends Component {
   }
 }
 
-export default Publication;
+export default connect(mapStatePublication, dispatchStatePublication)(Publication);

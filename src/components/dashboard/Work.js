@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStateWork from '../../store/dashboard/work/mapStateAction';
+import dispatchStateWork from '../../store/dashboard/work/dispatchStateAction';
 
 class Work extends Component {
-
+  
+  componentWillMount() {
+    this.props.fetchWork();
+  }
+  
   render() {
     return (
        <div>
@@ -12,4 +19,4 @@ class Work extends Component {
   }
 }
 
-export default Work;
+export default connect(mapStateWork, dispatchStateWork)(Work);

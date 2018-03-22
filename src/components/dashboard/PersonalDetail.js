@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStatePersonal from '../../store/dashboard/personaldetail/mapStateAction';
+import dispatchStatePersonal from '../../store/dashboard/personaldetail/dispatchStateAction';
 
 class PersonalDetail extends Component {
-
+  
+  componentWillMount() {
+    this.props.fetchPersonal();
+  }
+  
   render() {
     return (
       <div>
@@ -12,4 +19,4 @@ class PersonalDetail extends Component {
   }
 }
 
-export default PersonalDetail;
+export default connect(mapStatePersonal, dispatchStatePersonal)(PersonalDetail);

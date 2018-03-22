@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStateEdu from '../../store/dashboard/education/mapStateAction';
+import dispatchStateEdu from '../../store/dashboard/education/dispatchStateAction';
 
 class Education extends Component {
-  
+   
+  componentWillMount() {
+    this.props.fetchEducation();
+  }
+
   render() {
     return (
       <div>
@@ -12,4 +19,4 @@ class Education extends Component {
   }
 }
 
-export default Education;
+export default connect(mapStateEdu, dispatchStateEdu)(Education);

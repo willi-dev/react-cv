@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStateProject from '../../store/dashboard/project/mapStateAction';
+import dispatchStateProject from '../../store/dashboard/project/dispatchStateAction';
 
 class Project extends Component {
+  
+  componentWillMount() {
+    this.props.fetchProject();
+  }
   
   render() {
     return (
@@ -12,4 +19,4 @@ class Project extends Component {
   }
 }
 
-export default Project;
+export default connect(mapStateProject, dispatchStateProject)(Project);
