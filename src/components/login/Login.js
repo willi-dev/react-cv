@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import withAuthentication from '../withAuthentication';
 
 class Login extends Component {
   
@@ -17,15 +18,14 @@ class Login extends Component {
                       <h3 className="mb-0">Login</h3>
                     </div>
                     <div className="card-body">
-                      
-                      <form className="form" autocomplete="off" >
+                      <form className="form">
                         <div className="form-group">
-                          <label for="useremail">Email</label>
-                          <input type="email" className="form-control" name="useremail" id="useremail" required="" placeholder="email..."/>
+                          <label htmlFor="username">Email</label>
+                          <input type="email" className="form-control" name="username" id="username" required="" placeholder="email..."/>
                         </div>
                         <div className="form-group">
-                          <label for="userpassword">Password</label>
-                          <input type="password" className="form-control" name="userpassword" id="userpassword" required="" placeholder="password..." autocomplete="new-password" />
+                          <label htmlFor="userpassword">Password</label>
+                          <input type="password" className="form-control" name="userpassword" id="userpassword" required="" placeholder="password..." />
                         </div>
                         <button type="submit" className="btn btn-outline-primary btn-block">L O G I N</button>
                       </form>
@@ -42,4 +42,4 @@ class Login extends Component {
 
 }
 
-export default Login;
+export default withAuthentication(Login);
