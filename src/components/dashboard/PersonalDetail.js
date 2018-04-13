@@ -16,31 +16,31 @@ class PersonalDetail extends Component {
           <hr/>
           <div>
             <form>
-              <div class="form-group">
-                <label for="personal-detail-place">Place of Birth</label>
-                <input type="text" class="form-control" id="personal-detail-place" placeholder="Example: Padang"/>
+              <div className="form-group">
+                <label htmlFor="personal-detail-place">Place of Birth</label>
+                <input type="text" className="form-control" id="personal-detail-place" placeholder="Example: Padang"/>
               </div>
-              <div class="form-group">
-                <label for="personal-detail-date">Date of Birth</label>
-                <input type="text" class="form-control" id="personal-detail-date" placeholder="Example: 05 April 1989"/>
+              <div className="form-group">
+                <label htmlFor="personal-detail-date">Date of Birth</label>
+                <input type="text" className="form-control" id="personal-detail-date" placeholder="Example: 05 April 1989"/>
               </div>
-              <div class="form-group">
-                <label for="personal-detail-gender">Gender</label>
-                <select class="form-control" id="personal-detail-gender" >
+              <div className="form-group">
+                <label htmlFor="personal-detail-gender">Gender</label>
+                <select className="form-control" id="personal-detail-gender" >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label for="personal-detail-language">Language</label>
-                <input type="text" class="form-control" id="personal-detail-language" placeholder="Example: Bahasa, English"/>
+              <div className="form-group">
+                <label htmlFor="personal-detail-language">Language</label>
+                <input type="text" className="form-control" id="personal-detail-language" placeholder="Example: Bahasa, English"/>
               </div>
-              <div class="form-group">
-                <label for="personal-detail-language">Religion</label>
-                <input type="text" class="form-control" id="personal-detail-religion" placeholder="Example: Islam"/>
+              <div className="form-group">
+                <label htmlFor="personal-detail-language">Religion</label>
+                <input type="text" className="form-control" id="personal-detail-religion" placeholder="Example: Islam"/>
               </div>
-              <div class="form-group">
-                <button class="btn btn-primary" type="submit">
+              <div className="form-group">
+                <button className="btn btn-primary" type="submit">
                   Submit
                 </button>
               </div>

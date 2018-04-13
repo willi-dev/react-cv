@@ -15,21 +15,21 @@ class Education extends Component {
         <h1 className="display-4 dashboard-title">Education</h1>
         <hr/>
         <form>
-          <div class="form-group">
-            <label for="education-school">School</label>
-            <input type="text" class="form-control" id="education-school" placeholder="Example: SMA Negeri 19 Bandung"/>
+          <div className="form-group">
+            <label htmlFor="education-school">School</label>
+            <input type="text" className="form-control" id="education-school" placeholder="Example: SMA Negeri 19 Bandung"/>
           </div>
-          <div class="form-group">
-            <label for="education-period">Education Period</label>
-            <input type="text" class="form-control" id="education-period" placeholder="Example: January 2016 - February 2017"/>
+          <div className="form-group">
+            <label htmlFor="education-period">Education Period</label>
+            <input type="text" className="form-control" id="education-period" placeholder="Example: January 2016 - February 2017"/>
           </div>
           
-          <div class="form-group">
-            <label for="education-description">Education Description</label>
-            <textarea class="form-control" id="work-description" rows="3"></textarea>
+          <div className="form-group">
+            <label htmlFor="education-description">Education Description</label>
+            <textarea className="form-control" id="work-description" rows="3"></textarea>
           </div>
-          <div class="form-group">
-            <button class="btn btn-primary" type="submit">
+          <div className="form-group">
+            <button className="btn btn-primary" type="submit">
               Submit
             </button>
           </div>

@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
+import { auth } from '../../services/firebase';
 import { Link } from 'react-router-dom';
 
 class SidebarDashboard extends Component {
+  
+  onClick = (event) => {
+    auth.doSignOut();
+    event.preventDefault();
+  }
 
   render(){
+    const REACT_VERSION = React.version;
     return (
        <div className={this.props.menuOpen ? 'side-menu side-menu__offcanvas side-menu--open' : 'side-menu side-menu__offcanvas'}>
         <ul className="side-menu__dashboard">
+          <li className="side-menu__item">
+            <p>react version: {REACT_VERSION}</p>
+          </li>
           <li className="side-menu__item">
             <Link to='/dashboard/'>Main Profile</Link>
           </li>
@@ -32,7 +42,7 @@ class SidebarDashboard extends Component {
             <Link to='/dashboard/publication'>Publication & Research</Link>
           </li>
           <li className="side-menu__item">
-            <Link to="/login">Logout</Link>
+            <Link to='/login' onClick={this.onClick}>Logout</Link>
           </li>
         </ul>
       </div>

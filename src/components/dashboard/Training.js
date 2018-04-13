@@ -15,20 +15,20 @@ class Training extends Component {
         <h1 className="display-4 dashboard-title">Training</h1>
         <hr/>
         <form>
-          <div class="form-group">
-            <label for="training-name">Training Name</label>
-            <input type="text" class="form-control" id="training-name" placeholder="Example: Pelatihan dasar action script 2.0"/>
+          <div className="form-group">
+            <label htmlFor="training-name">Training Name</label>
+            <input type="text" className="form-control" id="training-name" placeholder="Example: Pelatihan dasar action script 2.0"/>
           </div>
-          <div class="form-group">
-            <label for="training-place">Training Place</label>
-            <input type="text" class="form-control" id="training-place" placeholder="Example: Ilmu Komputer UPI Bandung"/>
+          <div className="form-group">
+            <label htmlFor="training-place">Training Place</label>
+            <input type="text" className="form-control" id="training-place" placeholder="Example: Ilmu Komputer UPI Bandung"/>
           </div>
-          <div class="form-group">
-            <label for="training-year">Year</label>
-            <input type="text" class="form-control" id="training-year" placeholder="Example: 2012"/>
+          <div className="form-group">
+            <label htmlFor="training-year">Year</label>
+            <input type="text" className="form-control" id="training-year" placeholder="Example: 2012"/>
           </div>
-          <div class="form-group">
-            <button class="btn btn-primary" type="submit">
+          <div className="form-group">
+            <button className="btn btn-primary" type="submit">
               Submit
             </button>
           </div>

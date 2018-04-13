@@ -1,12 +1,10 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-
-import firebase from '../services/firebaseConfig';
+import React from 'react';
+import AuthUserContext from './AuthUserContext';
+import {firebase} from '../services/firebase';
+// import * as routes from '../constants/routes';
 
 const withAuthentication = (Component) => {
-  
   class WithAuthentication extends Component {
-
     constructor(props) {
       super(props);
 
@@ -14,35 +12,26 @@ const withAuthentication = (Component) => {
         authUser: null
       };
     }
-    
-    getChildContext() {
-      return {
-        authUser: this.state.authUser,
-      }
-    }
 
     componentDidMount() {
-      firebase.auth().onAuthStateChanged( (authUser) => {
+      firebase.auth.onAuthStateChanged( (authUser) => {
         authUser
           ? this.setState( () => ( { authUser } ))
           : this.setState( () => ( { authUser: null } ));
       });
-      // console.log( firebase );
     }
 
     render() {
+      const { authUser } = this.state;
       return (
-        <Component />
+        <AuthUserContext.Provider value={authUser}>
+          <Component />
+        </AuthUserContext.Provider>
       );
     }
   }
 
-  WithAuthentication.childContextTypes = {
-    authUser: PropTypes.object,
-  }
-
   return WithAuthentication;
-
 }
 
 export default withAuthentication;

@@ -15,25 +15,25 @@ class Project extends Component {
         <h1 className="display-4 dashboard-title">Project</h1>
         <hr/>
         <form>
-          <div class="form-group">
-            <label for="project-name">Project Name</label>
-            <input type="text" class="form-control" id="project-name" placeholder="Example: Website Company Profile"/>
+          <div className="form-group">
+            <label htmlFor="project-name">Project Name</label>
+            <input type="text" className="form-control" id="project-name" placeholder="Example: Website Company Profile"/>
           </div>
-          <div class="form-group">
-            <label for="project-company">Company</label>
-            <input type="text" class="form-control" id="project-company" placeholder="Example: Mirum Agency"/>
+          <div className="form-group">
+            <label htmlFor="project-company">Company</label>
+            <input type="text" className="form-control" id="project-company" placeholder="Example: Mirum Agency"/>
           </div>
-          <div class="form-group">
-            <label for="project-period">Project Period</label>
-            <input type="text" class="form-control" id="project-period" placeholder="Example: January 2016 - February 2017"/>
+          <div className="form-group">
+            <label htmlFor="project-period">Project Period</label>
+            <input type="text" className="form-control" id="project-period" placeholder="Example: January 2016 - February 2017"/>
           </div>
           
-          <div class="form-group">
-            <label for="project-description">Project Description</label>
-            <textarea class="form-control" id="project-description" rows="3"></textarea>
+          <div className="form-group">
+            <label htmlFor="project-description">Project Description</label>
+            <textarea className="form-control" id="project-description" rows="3"></textarea>
           </div>
-          <div class="form-group">
-            <button class="btn btn-primary" type="submit">
+          <div className="form-group">
+            <button className="btn btn-primary" type="submit">
               Submit
             </button>
           </div>
