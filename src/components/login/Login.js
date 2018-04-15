@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import mapStateAuth from '../../store/auth/mapStateAction';
+import dispatchStateAuth from '../../store/auth/dispatchStateAction';
 // import { withRouter, Redirect } from 'react-router-dom';
-import { auth } from '../../services/firebase';
-import * as routes from '../../constants/routes';
+// import { auth } from '../../services/firebase';
+// import * as routes from '../../constants/routes';
 
 
 const byPropKey = (propertyName, value) => () => ({
@@ -22,27 +25,37 @@ class Login extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = (event) => {
+  // onSubmit = (event) => {
+  //   const {
+  //     email,
+  //     password,
+  //   } = this.state;
+
+  //   const {
+  //     history,
+  //   } = this.props;
+
+  //   auth.doSignInWithEmailAndPassword( email, password )
+  //     .then( () => {
+  //       this.setState( () => ({...INITIAL_STATE}));
+  //       history.push(routes.DASHBOARD_MAIN);
+  //       console.log( email );
+  //       console.log( password );
+  //     })
+  //     .catch( error => {
+  //       this.setState( byPropKey('error', error ));
+  //     });
+  //     event.preventDefault();
+  // }
+
+  onSubmit = (e) => {
+    e.preventDefault();
     const {
       email,
       password,
     } = this.state;
-
-    const {
-      history,
-    } = this.props;
-
-    auth.doSignInWithEmailAndPassword( email, password )
-      .then( () => {
-        this.setState( () => ({...INITIAL_STATE}));
-        history.push(routes.DASHBOARD_MAIN);
-        console.log( email );
-        console.log( password );
-      })
-      .catch( error => {
-        this.setState( byPropKey('error', error ));
-      });
-      event.preventDefault();
+   
+    this.props.fetchUserDAta(email, password);
   }
 
   render() {
@@ -103,5 +116,4 @@ class Login extends Component {
 
 }
 
-export default Login;
-
+export default connect(mapStateAuth, dispatchStateAuth)(Login);
