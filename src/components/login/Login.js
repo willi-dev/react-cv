@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
-// import { withRouter, Redirect } from 'react-router-dom';
-// import { auth } from '../../services/firebase';
-// import * as routes from '../../constants/routes';
-
+import { Redirect } from 'react-router-dom';
+import * as routes from '../../constants/routes';
+import { firebaseConfig } from '../../services/firebase';
+import store from '../../store/store';
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
@@ -15,38 +15,15 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
+  isAuth: false,
 };
 
 class Login extends Component {
   
   constructor(props){
     super(props);
-
     this.state = { ...INITIAL_STATE };
   }
-
-  // onSubmit = (event) => {
-  //   const {
-  //     email,
-  //     password,
-  //   } = this.state;
-
-  //   const {
-  //     history,
-  //   } = this.props;
-
-  //   auth.doSignInWithEmailAndPassword( email, password )
-  //     .then( () => {
-  //       this.setState( () => ({...INITIAL_STATE}));
-  //       history.push(routes.DASHBOARD_MAIN);
-  //       console.log( email );
-  //       console.log( password );
-  //     })
-  //     .catch( error => {
-  //       this.setState( byPropKey('error', error ));
-  //     });
-  //     event.preventDefault();
-  // }
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -55,15 +32,44 @@ class Login extends Component {
       password,
     } = this.state;
    
-    this.props.fetchUserDAta(email, password);
+    // this.props.fetchUserData(email, password);
+    // if( localStorage.getItem('authUser') != null ){
+    //   this.setState({isAuth: true});
+    // }
+
+    firebaseConfig.auth().signInWithEmailAndPassword( email, password )
+      .then( (firebaseUser) => {
+        this.props.fetchUserData(firebaseUser);
+        this.props.userSignIn();
+        localStorage.setItem('authUser', JSON.stringify(firebaseUser) );
+        if( localStorage.getItem('authUser') != null ){
+          this.setState({isAuth: true});
+        }
+        console.log( store.getState().auth.isAuth );
+      })
+      .catch( error => {
+        this.props.fetchUserDataReject(error);
+        console.log( store.getState().auth.isAuth );
+      });
+
+  }
+
+  componentWillMount(){
+    if( localStorage.getItem('authUser') != null ){
+      // this.setState({isAuth: true});
+    }
   }
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, password, error, isAuth } = this.state;
     const isInvalid = password === '' || email === '';
+    // let isAuthentication = store.getState().auth.isAuth;
 
     return (
       <div>
+        {isAuth && (
+          <Redirect to={routes.DASHBOARD_MAIN} />
+        )}
         <div className="container py-5">
           <div className="row">
             <div className="col-md-12">

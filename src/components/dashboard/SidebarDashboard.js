@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { auth } from '../../services/firebase';
+import { connect } from 'react-redux';
+import mapStateAuth from '../../store/auth/mapStateAction';
+import dispatchStateAuth from '../../store/auth/dispatchStateAction';
+// import { auth } from '../../services/firebase';
 import { Link } from 'react-router-dom';
 
 class SidebarDashboard extends Component {
   
-  onClick = (event) => {
-    auth.doSignOut();
-    event.preventDefault();
+  onClick = (e) => {
+    e.preventDefault();
+    this.props.userSignOut();
+    // firebaseConfig.auth().signOut();
   }
 
   render(){
     const REACT_VERSION = React.version;
     return (
-       <div className={this.props.menuOpen ? 'side-menu side-menu__offcanvas side-menu--open' : 'side-menu side-menu__offcanvas'}>
+      <div className={this.props.menuOpen ? 'side-menu side-menu__offcanvas side-menu--open' : 'side-menu side-menu__offcanvas'}>
         <ul className="side-menu__dashboard">
           <li className="side-menu__item">
             <p>react version: {REACT_VERSION}</p>
@@ -51,4 +55,4 @@ class SidebarDashboard extends Component {
 
 }
 
-export default SidebarDashboard;
+export default connect(mapStateAuth, dispatchStateAuth)( SidebarDashboard );
