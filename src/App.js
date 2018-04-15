@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebaseConfig from './services/firebaseConfig';
+import {firebaseConfig} from './services/firebase';
 import _ from 'lodash';
 
 class App extends Component {

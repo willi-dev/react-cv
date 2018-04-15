@@ -1,4 +1,4 @@
-import firebase from '../../../services/firebaseConfig';
+import {firebaseConfig} from '../../../services/firebase';
 import _ from 'lodash';
 
 const getData = values => {
@@ -17,7 +17,7 @@ const getData = values => {
 const dispatchStateToProps = dispatch => {
   return {
     fetchSkill: () => {
-      let skillData = firebase.database().ref('/skill');
+      let skillData = firebaseConfig.database().ref('/skill');
       skillData.on('value', snapshot =>{
         dispatch({ type: 'FETCH_SKILL_FULFILLED', payload: getData( snapshot.val() )});
       });

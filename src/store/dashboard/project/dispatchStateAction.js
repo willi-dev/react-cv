@@ -1,4 +1,4 @@
-import firebase from '../../../services/firebaseConfig';
+import {firebaseConfig} from '../../../services/firebase';
 import _ from 'lodash';
 
 const getData = values => {
@@ -17,7 +17,7 @@ const getData = values => {
 const dispatchStateToProps = dispatch => {
   return {
     fetchProject: () => {
-      let projectData = firebase.database().ref('/project');
+      let projectData = firebaseConfig.database().ref('/project');
       projectData.on('value', snapshot =>{
         dispatch({ type: 'FETCH_PROJECT_FULFILLED', payload: getData( snapshot.val() )});
       });

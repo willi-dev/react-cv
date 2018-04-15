@@ -1,4 +1,4 @@
-import firebase from '../../../services/firebaseConfig';
+import {firebaseConfig} from '../../../services/firebase';
 import _ from 'lodash';
 
 const getData = values => {
@@ -17,7 +17,7 @@ const getData = values => {
 const dispatchStateToProps = dispatch => {
   return {
     fetchMainProfile: () => {
-      let profileData = firebase.database().ref('/mainprofile');
+      let profileData = firebaseConfig.database().ref('/mainprofile');
       profileData.on('value', snapshot =>{
         dispatch({ type: 'FETCH_MAIN_FULFILLED', payload: getData( snapshot.val() )});
       });

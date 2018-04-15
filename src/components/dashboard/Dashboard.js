@@ -11,11 +11,7 @@ import Education from './Education';
 import Skill from './Skill';
 import Training from './Training';
 import Publication from './Publication';
-import withAuthentication from '../withAuthentication';
 import * as routes from '../../constants/routes';
-// import Login from '../login/Login';
-// import { firebase } from '../../services/firebase';
-// import AuthUserContext from '../AuthUserContext';
 
 class Dashboard extends Component {
   
@@ -61,4 +57,4 @@ class Dashboard extends Component {
   }
 }
 
-export default withAuthentication(Dashboard);
+export default Dashboard;

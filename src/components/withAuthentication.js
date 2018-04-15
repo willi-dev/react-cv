@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthUserContext from './AuthUserContext';
-import {firebase} from '../services/firebase';
+// import {firebaseConfig} from '../services/firebase';
 // import * as routes from '../constants/routes';
 
 const withAuthentication = (Component) => {
@@ -13,13 +13,13 @@ const withAuthentication = (Component) => {
       };
     }
 
-    componentDidMount() {
-      firebase.auth.onAuthStateChanged( (authUser) => {
-        authUser
-          ? this.setState( () => ( { authUser } ))
-          : this.setState( () => ( { authUser: null } ));
-      });
-    }
+    // componentDidMount() {
+    //   firebase.auth.onAuthStateChanged( (authUser) => {
+    //     authUser
+    //       ? this.setState( () => ( { authUser } ))
+    //       : this.setState( () => ( { authUser: null } ));
+    //   });
+    // }
 
     render() {
       const { authUser } = this.state;
