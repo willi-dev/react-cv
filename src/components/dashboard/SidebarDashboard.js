@@ -4,13 +4,19 @@ import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
 // import { auth } from '../../services/firebase';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class SidebarDashboard extends Component {
   
+  constructor(props){
+    super(props);
+  }
+
   onClick = (e) => {
     e.preventDefault();
     this.props.userSignOut();
-    // firebaseConfig.auth().signOut();
+    // this.props.history.push('/login');
+  //   // firebaseConfig.auth().signOut();
   }
 
   render(){
@@ -55,4 +61,4 @@ class SidebarDashboard extends Component {
 
 }
 
-export default connect(mapStateAuth, dispatchStateAuth)( SidebarDashboard );
+export default withRouter(connect(mapStateAuth, dispatchStateAuth)( SidebarDashboard ));

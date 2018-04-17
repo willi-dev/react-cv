@@ -16,8 +16,6 @@ import * as routes from '../../constants/routes';
 import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
 
-// import store from '../../store/store';
-
 const INITIAL_STATE = {
   menuOpen: false,
   isAuth: true
@@ -29,15 +27,14 @@ class Dashboard extends Component {
     super(props);
     this.onClickMenu = this.onClickMenu.bind(this);
     this.state = {...INITIAL_STATE};
-    // console.log('retrievedObject: ', JSON.parse(localStorage.getItem('authUser')));
   }
 
   componentDidMount(){
-    this.props.userSignIn();
-    if( localStorage.getItem('authUser') === null ){
-      this.setState({isAuth: false});
+    // code here
+    const isAuthentication = localStorage.getItem('authUser');
+    if( isAuthentication === null ){
+      this.setState({isAuth : false})
     }
-
   }
   
   onClickMenu(e){
@@ -46,17 +43,23 @@ class Dashboard extends Component {
     });
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    console.log('click ey');
+  }
+
   render() {
     const { menuOpen, isAuth } = this.state;
-    // let isAuthentication = store.getState().auth.isAuth;
     return (
       <div>
-        { !isAuth && (
-          <Redirect to={routes.LOGIN} />
-        )}
+        {
+          !isAuth && (
+            <Redirect to='/login' />
+          )
+        }
         <div className={menuOpen ? 'container-fluid container-hidden' : 'container-fluid'}>
           <div className="row">
-            <SidebarDashboard menuOpen={menuOpen} />
+            <SidebarDashboard menuOpen={menuOpen} oncClickLogout={ this.handleClick.bind(this) } />
             <div className={menuOpen ? 'col-md-12 main-content main-content--resize' : 'col-md-12 main-content'}>
               <span className="open-menu" onClick={this.onClickMenu}>
                 <i className="material-icons">{menuOpen ? 'close' : 'menu'}</i>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import { firebaseConfig } from '../../services/firebase';
 import store from '../../store/store';
@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   password: '',
   error: null,
   isAuth: false,
+  errorMessage: '',
 };
 
 class Login extends Component {
@@ -23,6 +24,7 @@ class Login extends Component {
   constructor(props){
     super(props);
     this.state = { ...INITIAL_STATE };
+    this.onSubmitLogin = this.onSubmit.bind(this);
   }
 
   onSubmit = (e) => {
@@ -30,46 +32,29 @@ class Login extends Component {
     const {
       email,
       password,
+      isAuth,
+      errorMessage
     } = this.state;
-   
-    // this.props.fetchUserData(email, password);
-    // if( localStorage.getItem('authUser') != null ){
-    //   this.setState({isAuth: true});
-    // }
 
     firebaseConfig.auth().signInWithEmailAndPassword( email, password )
       .then( (firebaseUser) => {
         this.props.fetchUserData(firebaseUser);
         this.props.userSignIn();
-        localStorage.setItem('authUser', JSON.stringify(firebaseUser) );
-        if( localStorage.getItem('authUser') != null ){
-          this.setState({isAuth: true});
-        }
-        console.log( store.getState().auth.isAuth );
+        localStorage.setItem('authUser', firebaseUser );
+        this.setState({isAuth: true});
+        this.props.history.push('/dashboard');
       })
       .catch( error => {
         this.props.fetchUserDataReject(error);
-        console.log( store.getState().auth.isAuth );
+        this.setState({errorMessage: error});
       });
-
-  }
-
-  componentWillMount(){
-    if( localStorage.getItem('authUser') != null ){
-      // this.setState({isAuth: true});
-    }
   }
 
   render() {
-    const { email, password, error, isAuth } = this.state;
+    const { email, password, error, isAuth, errorMessage } = this.state;
     const isInvalid = password === '' || email === '';
-    // let isAuthentication = store.getState().auth.isAuth;
-
     return (
       <div>
-        {isAuth && (
-          <Redirect to={routes.DASHBOARD_MAIN} />
-        )}
         <div className="container py-5">
           <div className="row">
             <div className="col-md-12">
@@ -82,7 +67,8 @@ class Login extends Component {
                       <h3 className="mb-0">Login</h3>
                     </div>
                     <div className="card-body">
-                      <form className="form" onSubmit={this.onSubmit}>
+                      <form className="form" onSubmit={this.onSubmitLogin}>
+                        { errorMessage.message }
                         <div className="form-group">
                           <label htmlFor="username">Email</label>
                           <input 
@@ -122,4 +108,4 @@ class Login extends Component {
 
 }
 
-export default connect(mapStateAuth, dispatchStateAuth)(Login);
+export default withRouter(connect(mapStateAuth, dispatchStateAuth)(Login));

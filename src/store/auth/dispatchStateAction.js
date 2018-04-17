@@ -39,6 +39,7 @@ const dispatchStateToProps = dispatch => {
 			firebaseConfig.auth().signOut();
 			dispatch( { type: 'USER_SIGNOUT'} );
 			localStorage.removeItem('authUser');
+			localStorage.removeItem('datauser');
 		}
 
 	}

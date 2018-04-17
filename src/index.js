@@ -11,12 +11,11 @@ import Dashboard from './components/dashboard/Dashboard';
 import registerServiceWorker from './registerServiceWorker';
 
 let isAuth = localStorage.getItem('authUser');
-
 const AuthRoute = ( { component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    isAuth != null
-    ? <Component {...props} />
-    : <Redirect to='/login' />
+    (isAuth !== null)
+    ? <Redirect to='/dashboard' />
+    : <Component {...props} />
   )} />
 )
 
@@ -25,8 +24,8 @@ ReactDOM.render(
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={App} />
-          <Route exact path="/login" component={Login} />
-          <AuthRoute path="/dashboard" component={Dashboard}/>
+          <AuthRoute path="/login" component={Login} />
+          <Route path="/dashboard" component={Dashboard}/>
         </Switch>
       </BrowserRouter>
     </Provider>
