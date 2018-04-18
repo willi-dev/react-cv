@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import './dashboard.css';
 
 import SidebarDashboard from './SidebarDashboard';
@@ -25,29 +25,36 @@ class Dashboard extends Component {
   
   constructor(props){
     super(props);
-    this.onClickMenu = this.onClickMenu.bind(this);
     this.state = {...INITIAL_STATE};
-  }
-
-  componentDidMount(){
-    // code here
-    const isAuthentication = localStorage.getItem('authUser');
-    if( isAuthentication === null ){
-      this.setState({isAuth : false})
-    }
+    this.onClickMenu = this.onClickMenu.bind(this);
+    this.onClickLogout = this.onClickLogout.bind(this);
   }
   
+  /*
+   * onClickMenu
+   */
   onClickMenu(e){
     this.setState({
       menuOpen: !this.state.menuOpen
     });
   }
 
-  handleClick(e) {
-    e.preventDefault();
+  /*
+   * onClickLogout
+   */
+  onClickLogout(){
     console.log('click ey');
+    this.props.userSignOut();
+    this.props.history.push('/login');
   }
 
+  componentDidMount(){
+    const isAuthentication = localStorage.getItem('authUser');
+    if( isAuthentication === null ){
+      this.setState({isAuth : false})
+    }
+  }
+  
   render() {
     const { menuOpen, isAuth } = this.state;
     return (
@@ -59,7 +66,7 @@ class Dashboard extends Component {
         }
         <div className={menuOpen ? 'container-fluid container-hidden' : 'container-fluid'}>
           <div className="row">
-            <SidebarDashboard menuOpen={menuOpen} oncClickLogout={ this.handleClick.bind(this) } />
+            <SidebarDashboard menuOpen={menuOpen} onLogout={ this.onClickLogout } />
             <div className={menuOpen ? 'col-md-12 main-content main-content--resize' : 'col-md-12 main-content'}>
               <span className="open-menu" onClick={this.onClickMenu}>
                 <i className="material-icons">{menuOpen ? 'close' : 'menu'}</i>
@@ -80,4 +87,4 @@ class Dashboard extends Component {
   }
 }
 
-export default connect(mapStateAuth, dispatchStateAuth)(Dashboard);
+export default withRouter(connect(mapStateAuth, dispatchStateAuth)(Dashboard));

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import { firebaseConfig } from '../../services/firebase';
-import store from '../../store/store';
+import '../../App.css';
+import './login.css';
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
@@ -14,8 +15,7 @@ const byPropKey = (propertyName, value) => () => ({
 const INITIAL_STATE = {
   email: '',
   password: '',
-  error: null,
-  isAuth: false,
+  error: false,
   errorMessage: '',
 };
 
@@ -32,8 +32,6 @@ class Login extends Component {
     const {
       email,
       password,
-      isAuth,
-      errorMessage
     } = this.state;
 
     firebaseConfig.auth().signInWithEmailAndPassword( email, password )
@@ -41,20 +39,20 @@ class Login extends Component {
         this.props.fetchUserData(firebaseUser);
         this.props.userSignIn();
         localStorage.setItem('authUser', firebaseUser );
-        this.setState({isAuth: true});
-        this.props.history.push('/dashboard');
+        this.props.history.push(routes.DASHBOARD_MAIN);
       })
       .catch( error => {
         this.props.fetchUserDataReject(error);
         this.setState({errorMessage: error});
+        this.setState({error: true});
       });
   }
 
   render() {
-    const { email, password, error, isAuth, errorMessage } = this.state;
+    const { email, password, error, errorMessage } = this.state;
     const isInvalid = password === '' || email === '';
     return (
-      <div>
+      <div className="body-container__login">
         <div className="container py-5">
           <div className="row">
             <div className="col-md-12">
@@ -68,7 +66,11 @@ class Login extends Component {
                     </div>
                     <div className="card-body">
                       <form className="form" onSubmit={this.onSubmitLogin}>
-                        { errorMessage.message }
+
+                        <div className={error ? 'element-show alert alert-warning' : 'element.hide'} role="alert">
+                          { errorMessage.message }
+                        </div>
+                        
                         <div className="form-group">
                           <label htmlFor="username">Email</label>
                           <input 
@@ -92,8 +94,9 @@ class Login extends Component {
                             required="" 
                             placeholder="password..." />
                         </div>
-                        <button disabled={isInvalid} type="submit" className="btn btn-outline-primary btn-block">L O G I N</button>
-                        {error && <p>{error.message}</p>}
+                        <button disabled={isInvalid} type="submit" className="btn btn-outline-primary btn-block">
+                          <i className="material-icons">lock_outline</i> <span>Sign In</span>
+                        </button>
                       </form>
                     </div>
                   </div>

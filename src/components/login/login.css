@@ -1,0 +1,17 @@
+/* 
+ * login.css
+ */
+body{
+  background-color: #f3f3f3;
+}
+label, p, h1, h2, h3, h4, h5, h6{
+  color: #666;
+}
+
+.body-container__login{
+  /*background-color: #cccccc;*/
+}
+
+.card{
+  border-radius: 0;
+}

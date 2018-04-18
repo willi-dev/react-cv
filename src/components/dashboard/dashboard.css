@@ -2,8 +2,6 @@
     overflow-x: hidden;
 }
 
-/*.side-menu{*/
-
 .side-menu__offcanvas{
     height: 100%;
     width: 0;
@@ -40,7 +38,6 @@
 .dashboard-title {
   padding-left: 70px; 
 }
-/*}*/
 
 .main-content{
   padding: 20px 60px;

@@ -2,21 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
-// import { auth } from '../../services/firebase';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 
 class SidebarDashboard extends Component {
   
   constructor(props){
     super(props);
+    this.onClickLogout = this.onClickLogout.bind(this);
   }
 
-  onClick = (e) => {
+  onClickLogout = (e) => {
     e.preventDefault();
-    this.props.userSignOut();
-    // this.props.history.push('/login');
-  //   // firebaseConfig.auth().signOut();
+    const { onLogout } = this.props;
+    onLogout();
   }
 
   render(){
@@ -52,13 +50,12 @@ class SidebarDashboard extends Component {
             <Link to='/dashboard/publication'>Publication & Research</Link>
           </li>
           <li className="side-menu__item">
-            <Link to='/login' onClick={this.onClick}>Logout</Link>
+            <Link to='/login' onClick={this.onClickLogout}>Logout</Link>
           </li>
         </ul>
       </div>
     );
   }
-
 }
 
-export default withRouter(connect(mapStateAuth, dispatchStateAuth)( SidebarDashboard ));
+export default connect(mapStateAuth, dispatchStateAuth)( SidebarDashboard );
