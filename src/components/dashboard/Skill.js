@@ -34,7 +34,7 @@ class Skill extends Component {
               {
                 (!this.props.fetched) && (
                   <div className="loading-container">
-                    <i class="material-icons">hourglass_empty</i>
+                    <div className="spinner"></div>
                   </div>
                  )
               }
