@@ -18,7 +18,7 @@ const dispatchStateToProps = dispatch => {
   return {
     fetchProject: () => {
       let projectData = firebaseConfig.database().ref('/project');
-      projectData.on('value', snapshot =>{
+      projectData.on('value', snapshot => {
         dispatch({ type: 'FETCH_PROJECT_FULFILLED', payload: getData( snapshot.val() )});
       });
     },

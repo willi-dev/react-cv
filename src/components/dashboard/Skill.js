@@ -31,20 +31,29 @@ class Skill extends Component {
               </form>
               <hr/>
               
-              <div>
-                {/*loop skill here*/}
-                <span className="skill-badge skill-badge__primary" > 
-                  PHP &nbsp;
-                  <span className="badge badge-light badge-delete">
-                    <i className="material-icons">close</i>
-                  </span> 
-                </span>
+              {
+                (!this.props.fetched) && (
+                  <div className="loading-container">
+                    <i class="material-icons">hourglass_empty</i>
+                  </div>
+                 )
+              }
+              <div className={!this.props.fetched ? 'element-hide': 'element-show'}>
+                {
+                  this.props.skill.map( (item, index) => (
+                    <span key={index} className="skill-badge skill-badge__primary" > 
+                      {item.skill} &nbsp;
+                      <span className="badge badge-light badge-delete">
+                        <i className="material-icons">close</i>
+                      </span> 
+                    </span>
+                  ))
+                }
+                
               </div>
 
             </div>
             
-
-            {/*replace it with Related component */}
             <Related />
           </div>
 

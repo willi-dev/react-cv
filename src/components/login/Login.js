@@ -58,12 +58,10 @@ class Login extends Component {
             <div className="col-md-12">
               <h2 className="text-center mb-5">Dashboard Login</h2>
               <div className="row">
-                <div className="col-md-6 mx-auto">
+                <div className="col-md-4 mx-auto">
                   <span className="anchor" id="formLogin"></span>
                   <div className="card">
-                    <div className="card-header">
-                      <h3 className="mb-0">Login</h3>
-                    </div>
+                    
                     <div className="card-body">
                       <form className="form" onSubmit={this.onSubmitLogin}>
 
@@ -95,7 +93,8 @@ class Login extends Component {
                             placeholder="password..." />
                         </div>
                         <button disabled={isInvalid} type="submit" className="btn btn-outline-primary btn-block">
-                          <i className="material-icons">lock_outline</i> <span>Sign In</span>
+                          <span className="btn-element"><i className="material-icons">lock_open</i></span>
+                          <span className="btn-element">&nbsp;Sign In</span>
                         </button>
                       </form>
                     </div>

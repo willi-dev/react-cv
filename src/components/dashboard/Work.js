@@ -22,7 +22,6 @@ class Work extends Component {
   }
   componentWillMount() {
     this.props.fetchWork();
-    
   }
   
   render() {
@@ -90,7 +89,7 @@ class Work extends Component {
 
         <div className={!this.props.fetched ? 'element-hide': 'element-show'}>
           <table className="table">
-            <thead>
+            <thead className="thead-dark">
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Position</th>
@@ -110,7 +109,6 @@ class Work extends Component {
                   </td>
                 </tr>
               ))
-              
               }
             </tbody>
           </table>

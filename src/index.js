@@ -7,6 +7,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
 import Login from './components/login/Login';
+import Logout from './components/login/Logout';
 import Dashboard from './components/dashboard/Dashboard';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={App} />
           <AuthRoute path="/login" component={Login} />
+          <AuthRoute path="/logout" component={Logout} />
           <Route path="/dashboard" component={Dashboard}/>
         </Switch>
       </BrowserRouter>

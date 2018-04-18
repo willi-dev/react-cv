@@ -25,14 +25,24 @@ class Related extends Component {
         </form>
         <hr/>
 
-        <div>
-          {/*loop related here*/}
-          <span className="skill-badge skill-badge__related">
-            Git &nbsp;
-            <span className="badge badge-light badge-delete">
-              <i className="material-icons">close</i>
-            </span> 
-          </span>
+        {
+          (!this.props.fetched) && (
+            <div className="loading-container">
+              <i class="material-icons">hourglass_empty</i>
+            </div>
+           )
+        }
+        <div className={!this.props.fetched ? 'element-hide': 'element-show'}>
+          {
+            this.props.related.map((item, index) => (
+              <span key={index} className="skill-badge skill-badge__related">
+                {item.relatedtools} &nbsp;
+                <span className="badge badge-light badge-delete">
+                  <i className="material-icons">close</i>
+                </span> 
+              </span>
+            ))
+          }
         </div>
         
       </div>

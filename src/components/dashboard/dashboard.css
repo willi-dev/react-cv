@@ -71,3 +71,19 @@ body{
 .skill-badge.skill-badge__related{
   background-color: #28a745;
 }
+
+.loading-container{
+  position: relative;
+  text-align: center;
+  padding: 90px 0;
+  -webkit-animation: rotation 2s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}

@@ -5,17 +5,6 @@ import dispatchStateAuth from '../../store/auth/dispatchStateAction';
 import { Link } from 'react-router-dom';
 
 class SidebarDashboard extends Component {
-  
-  constructor(props){
-    super(props);
-    this.onClickLogout = this.onClickLogout.bind(this);
-  }
-
-  onClickLogout = (e) => {
-    e.preventDefault();
-    const { onLogout } = this.props;
-    onLogout();
-  }
 
   render(){
     const REACT_VERSION = React.version;
@@ -50,7 +39,7 @@ class SidebarDashboard extends Component {
             <Link to='/dashboard/publication'>Publication & Research</Link>
           </li>
           <li className="side-menu__item">
-            <Link to='/login' onClick={this.onClickLogout}>Logout</Link>
+            <Link to='/logout'>Logout</Link>
           </li>
         </ul>
       </div>

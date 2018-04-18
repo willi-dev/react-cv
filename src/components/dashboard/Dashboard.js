@@ -27,7 +27,6 @@ class Dashboard extends Component {
     super(props);
     this.state = {...INITIAL_STATE};
     this.onClickMenu = this.onClickMenu.bind(this);
-    this.onClickLogout = this.onClickLogout.bind(this);
   }
   
   /*
@@ -37,14 +36,6 @@ class Dashboard extends Component {
     this.setState({
       menuOpen: !this.state.menuOpen
     });
-  }
-
-  /*
-   * onClickLogout
-   */
-  onClickLogout(){
-    this.props.userSignOut();
-    this.props.history.push('/login');
   }
 
   componentDidMount(){
@@ -65,7 +56,7 @@ class Dashboard extends Component {
         }
         <div className={menuOpen ? 'container-fluid container-hidden' : 'container-fluid'}>
           <div className="row">
-            <SidebarDashboard menuOpen={menuOpen} onLogout={ this.onClickLogout } />
+            <SidebarDashboard menuOpen={menuOpen} />
             <div className={menuOpen ? 'col-md-12 main-content main-content--resize' : 'col-md-12 main-content'}>
               <span className="open-menu" onClick={this.onClickMenu}>
                 <i className="material-icons">{menuOpen ? 'close' : 'menu'}</i>
