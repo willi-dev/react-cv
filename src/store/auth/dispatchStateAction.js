@@ -26,7 +26,7 @@ const dispatchStateToProps = dispatch => {
 					dispatch({ type: 'FETCH_USER_DATA_FULFILLED', payload: JSON.stringify(authUser) } );
 					dispatch({ type: 'USER_SIGNIN' });
 					if( localStorage.getItem('authUser') === null){
-						localStorage.setItem('authUser', JSON.stringify(authUser) );
+						localStorage.setItem('authUser', authUser );
 					}
 				}else{
 					dispatch( { type: 'USER_SIGNOUT' } );
@@ -39,7 +39,6 @@ const dispatchStateToProps = dispatch => {
 			firebaseConfig.auth().signOut();
 			dispatch( { type: 'USER_SIGNOUT'} );
 			localStorage.removeItem('authUser');
-			localStorage.removeItem('datauser');
 		}
 
 	}

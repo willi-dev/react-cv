@@ -1,3 +1,7 @@
+body{
+  background-color: #fff;
+}
+
 .container-fluid.container-hidden{
     overflow-x: hidden;
 }

@@ -43,7 +43,6 @@ class Dashboard extends Component {
    * onClickLogout
    */
   onClickLogout(){
-    console.log('click ey');
     this.props.userSignOut();
     this.props.history.push('/login');
   }
