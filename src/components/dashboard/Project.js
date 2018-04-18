@@ -70,7 +70,8 @@ class Project extends Component {
           </div>
           <div className="form-group">
             <button disabled={isInvalid} className="btn btn-primary" type="submit">
-              Submit
+              <span className="btn-element btn-element--left"><i className="material-icons">assignment_turned_in</i></span>
+              <span className="btn-element btn-element--right">&nbsp;Save Project</span>
             </button>
           </div>
         </form>
@@ -78,7 +79,9 @@ class Project extends Component {
 
         {
           (!this.props.fetched) && (
-             <p>loading Projects...</p>
+            <div className="loading-container">
+              <div className="spinner"></div>
+            </div>
            )
         }
         <div className={this.props.fetched && this.props.project.length > 0 ? 'element-show': 'element-hide'}>
@@ -102,7 +105,16 @@ class Project extends Component {
                   <td>{item.project_company}</td>
                   <td>{item.project_period}</td>
                   <td>{item.project_description}</td>
-                  <td></td>
+                  <td>
+                    <div className="btn-group btn-group-sm" role="group" aria-label="Action">
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">delete</i>
+                      </button>
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">mode_edit</i>
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))
               }

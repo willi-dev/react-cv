@@ -3,23 +3,44 @@ import { connect } from 'react-redux';
 import mapStateRelated from '../../store/dashboard/related/mapStateAction';
 import dispatchStateRelated from '../../store/dashboard/related/dispatchStateAction';
 
+const byPropKey = ( propertyName, value ) => () => ({
+  [propertyName]: value
+})
+
+const INITIAL_STATE = {
+  relatedtools_name: ''
+}
+
 class Related extends Component {
   
+  constructor( props ){
+    super(props);
+    this.state = {...INITIAL_STATE};
+  }
+
   componentWillMount() {
     this.props.fetchRelated();
   }
   
   render() {
+    const { relatedtools_name } = this.state;
+    const isInvalid = relatedtools_name ==='';
     return (
       <div className="col-md-6">
         <form>
           <div className="form-group">
-            <label htmlFor="skill-name">Related Development Tools</label>
-            <input type="text" className="form-control" id="skill-name" placeholder="Example: git"/>
+            <label htmlFor="relatedtools-name">Related Development Tools</label>
+            <input type="text" 
+              className="form-control" 
+              id="relatedtools-name" 
+              placeholder="Example: git"
+              value={relatedtools_name}
+              onChange={event => this.setState(byPropKey('relatedtools_name', event.target.value))}/>
           </div>
           <div className="form-group">
-            <button className="btn btn-success" type="submit">
-              Add Related Development Tools
+            <button disabled={isInvalid} className="btn btn-success" type="submit">
+              <span className="btn-element btn-element--left"><i class="material-icons">format_paint</i> </span>
+              <span className="btn-element btn-element--right">&nbsp;Add Related Development Tools</span>
             </button>
           </div>
         </form>

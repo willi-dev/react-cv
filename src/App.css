@@ -25,5 +25,10 @@ button, a {
 .btn-element{
   display: inline-block;
   vertical-align: middle;
+}
+.btn-element--left{
   margin-top: 4px;
+}
+.btn-element--right{
+  
 }

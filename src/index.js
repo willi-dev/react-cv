@@ -26,7 +26,7 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={App} />
           <AuthRoute path="/login" component={Login} />
-          <AuthRoute path="/logout" component={Logout} />
+          <Route path="/logout" component={Logout} />
           <Route path="/dashboard" component={Dashboard}/>
         </Switch>
       </BrowserRouter>

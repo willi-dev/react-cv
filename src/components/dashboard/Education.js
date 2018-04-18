@@ -62,7 +62,8 @@ class Education extends Component {
           </div>
           <div className="form-group">
             <button disabled={isInvalid} className="btn btn-primary" type="submit">
-              Submit
+              <span className="btn-element btn-element--left"><i className="material-icons">school</i></span>
+              <span className="btn-element btn-element--right">&nbsp;Save Education</span>
             </button>
           </div>
         </form>
@@ -72,7 +73,7 @@ class Education extends Component {
         {
           (!this.props.fetched) && (
             <div className="loading-container">
-              <i class="material-icons">hourglass_empty</i>
+              <div className="spinner"></div>
             </div>
            )
         }
@@ -96,7 +97,16 @@ class Education extends Component {
                   <td>{item.school}</td>
                   <td>{item.period}</td>
                   <td>{item.description}</td>
-                  <td></td>
+                  <td>
+                    <div className="btn-group btn-group-sm" role="group" aria-label="Action">
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">delete</i>
+                      </button>
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">mode_edit</i>
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))
               }

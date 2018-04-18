@@ -4,13 +4,28 @@ import mapStateSkill from '../../store/dashboard/skill/mapStateAction';
 import dispatchStateSkill from '../../store/dashboard/skill/dispatchStateAction';
 import Related from './Related';
 
+const byPropKey = ( propertyName, value ) => () => ({
+  [propertyName]: value
+})
+
+const INITIAL_STATE = {
+  skill_name: '',
+}
+
 class Skill extends Component {
   
+  constructor(props){
+    super(props);
+    this.state = {...INITIAL_STATE};
+  }
+
   componentWillMount() {
     this.props.fetchSkill();
   }
   
   render() {
+    const { skill_name } = this.state;
+    const isInvalid = skill_name === '';
     return (
       <div>
         <h1 className="display-4 dashboard-title">Skill</h1>
@@ -21,11 +36,17 @@ class Skill extends Component {
               <form>
                 <div className="form-group">
                   <label htmlFor="skill-name">Skill</label>
-                  <input type="text" className="form-control" id="skill-name" placeholder="Example: PHP"/>
+                  <input type="text" 
+                    className="form-control" 
+                    id="skill-name" 
+                    placeholder="Example: PHP"
+                    value={skill_name}
+                    onChange={event => this.setState(byPropKey('skill_name', event.target.value))}/>
                 </div>
                 <div className="form-group">
-                  <button className="btn btn-primary" type="submit">
-                    Add Skill
+                  <button disabled={isInvalid} className="btn btn-primary" type="submit">
+                    <span className="btn-element btn-element--left"><i class="material-icons">games</i> </span>
+                    <span className="btn-element btn-element--right">&nbsp;Add Skill</span>
                   </button>
                 </div>
               </form>

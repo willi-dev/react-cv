@@ -93,8 +93,8 @@ class Login extends Component {
                             placeholder="password..." />
                         </div>
                         <button disabled={isInvalid} type="submit" className="btn btn-outline-primary btn-block">
-                          <span className="btn-element"><i className="material-icons">lock_open</i></span>
-                          <span className="btn-element">&nbsp;Sign In</span>
+                          <span className="btn-element btn-element--left"><i className="material-icons">lock_open</i></span>
+                          <span className="btn-element btn-element--right">&nbsp;Sign In</span>
                         </button>
                       </form>
                     </div>

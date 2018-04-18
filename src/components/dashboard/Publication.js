@@ -74,7 +74,7 @@ class Publication extends Component {
         {
           (!this.props.fetched) && (
             <div className="loading-container">
-              <i class="material-icons">hourglass_empty</i>
+              <div className="spinner"></div>
             </div>
            )
         }
@@ -98,7 +98,16 @@ class Publication extends Component {
                   <td>{item.publication}</td>
                   <td>{item.description}</td>
                   <td>{item.link}</td>
-                  <td></td>
+                  <td>
+                    <div className="btn-group btn-group-sm" role="group" aria-label="Action">
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">delete</i>
+                      </button>
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">mode_edit</i>
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))
               }

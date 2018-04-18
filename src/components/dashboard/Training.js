@@ -61,7 +61,7 @@ class Training extends Component {
           </div>
           <div className="form-group">
             <button disabled={isInvalid} className="btn btn-primary" type="submit">
-              Submit
+              Save Training
             </button>
           </div>
         </form>
@@ -71,7 +71,7 @@ class Training extends Component {
         {
           (!this.props.fetched) && (
             <div className="loading-container">
-              <i class="material-icons">hourglass_empty</i>
+              <div className="spinner"></div>
             </div>
            )
         }
@@ -95,7 +95,16 @@ class Training extends Component {
                   <td>{item.name}</td>
                   <td>{item.place}</td>
                   <td>{item.year}</td>
-                  <td></td>
+                  <td>
+                    <div className="btn-group btn-group-sm" role="group" aria-label="Action">
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">delete</i>
+                      </button>
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">mode_edit</i>
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))
               }

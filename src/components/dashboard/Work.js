@@ -75,7 +75,8 @@ class Work extends Component {
           </div>
           <div className="form-group">
             <button disabled={isInvalid} className="btn btn-primary" type="submit">
-              Save Work Experience
+              <span className="btn-element btn-element--left"><i class="material-icons">work</i> </span>
+              <span className="btn-element btn-element--right">&nbsp;Save Work Experience</span>
             </button>
           </div>
         </form>
@@ -83,10 +84,11 @@ class Work extends Component {
 
         {
           (!this.props.fetched) && (
-             <p>loading</p>
+            <div className="loading-container">
+              <div className="spinner"></div>
+            </div>
            )
         }
-
         <div className={!this.props.fetched ? 'element-hide': 'element-show'}>
           <table className="table">
             <thead className="thead-dark">
@@ -105,7 +107,14 @@ class Work extends Component {
                   <td>{item.position}</td>
                   <td>{item.company}</td>
                   <td>
-                    
+                    <div className="btn-group btn-group-sm" role="group" aria-label="Action">
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">delete</i>
+                      </button>
+                      <button type="button" className="btn btn-secondary">
+                        <i className="material-icons">mode_edit</i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))

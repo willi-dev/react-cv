@@ -80,7 +80,7 @@ class MainProfile extends Component {
               </div>
               <div className="form-group">
                 <button disabled={isInvalid} className="btn btn-primary" type="submit" >
-                  Submit
+                  Save Profile
                 </button>
               </div>
             </form>

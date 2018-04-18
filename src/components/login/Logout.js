@@ -24,12 +24,10 @@ class Logout extends Component {
     firebaseConfig.auth().signOut().then( function(){
         localStorage.removeItem('authUser');
         if( localStorage.getItem('authUser') === null ){
-          // _this.setState({isAuth : false})
+          _this.setState({isAuth : false})
           setTimeout(() => { 
             _this.props.history.push(routes.LOGIN);
-          }, 3000)
-        }else{
-          _this.props.history.push(routes.DASHBOARD_MAIN);
+          }, 6000)
         }
       }, function(error){
         console.log(error)
@@ -39,6 +37,7 @@ class Logout extends Component {
   render(){
     // const { isAuth } = this.state;
     return(
+    
       <div className="logout-container">
         <div className="icon-exit">
           <i class="material-icons">exit_to_app</i>
