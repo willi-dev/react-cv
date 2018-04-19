@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './dashboard.css';
 
 import SidebarDashboard from './SidebarDashboard';
@@ -16,9 +16,10 @@ import * as routes from '../../constants/routes';
 import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
 
+import { firebaseConfig } from '../../services/firebase';
+
 const INITIAL_STATE = {
   menuOpen: false,
-  isAuth: true
 }
 
 class Dashboard extends Component {
@@ -39,21 +40,19 @@ class Dashboard extends Component {
   }
 
   componentDidMount(){
-    const isAuthentication = localStorage.getItem('authUser');
-    if( isAuthentication === null ){
-      this.setState({isAuth : false})
-    }
+    firebaseConfig.auth().onAuthStateChanged( user =>{
+      if( user ){
+        localStorage.setItem('authUser', user );
+      }else{
+        localStorage.removeItem('authUser');
+      }
+    });
   }
   
   render() {
-    const { menuOpen, isAuth } = this.state;
+    const { menuOpen } = this.state;
     return (
       <div>
-        {
-          !isAuth && (
-            <Redirect to='/login' />
-          )
-        }
         <div className={menuOpen ? 'container-fluid container-hidden' : 'container-fluid'}>
           <div className="row">
             <SidebarDashboard menuOpen={menuOpen} />
@@ -77,4 +76,4 @@ class Dashboard extends Component {
   }
 }
 
-export default withRouter(connect(mapStateAuth, dispatchStateAuth)(Dashboard));
+export default connect(mapStateAuth, dispatchStateAuth)(Dashboard);

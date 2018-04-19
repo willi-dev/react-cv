@@ -19,3 +19,7 @@ export const doPasswordReset = (email) =>
 // Password Change
 export const doPasswordUpdate = (password) =>
   firebaseConfig.auth().currentUser.updatePassword(password);
+
+export const isAuthenticated = () => {
+  return !!firebaseConfig.auth().currentUser || !!localStorage.getItem('authUser'); 
+}
