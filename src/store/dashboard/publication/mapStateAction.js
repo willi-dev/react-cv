@@ -1,7 +1,9 @@
 
 const mapStateToProps = store => {
   return {
-    publication: store.publication.publication
+    publication: store.publication.publication,
+    fetched: store.publication.fetched,
+    fetching: store.publication.fetching,
   }
 }
 

@@ -1,8 +1,10 @@
+body{
+  background-color: #fff;
+}
+
 .container-fluid.container-hidden{
     overflow-x: hidden;
 }
-
-/*.side-menu{*/
 
 .side-menu__offcanvas{
     height: 100%;
@@ -40,7 +42,6 @@
 .dashboard-title {
   padding-left: 70px; 
 }
-/*}*/
 
 .main-content{
   padding: 20px 60px;
@@ -69,4 +70,37 @@
 }
 .skill-badge.skill-badge__related{
   background-color: #28a745;
+}
+
+.loading-container{
+  position: relative;
+  text-align: center;
+  padding: 90px 0;
+  -webkit-animation: rotation 2s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #333;
+  animation: spinner .6s linear infinite;
 }

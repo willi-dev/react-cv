@@ -1,4 +1,4 @@
-import firebase from '../../../services/firebaseConfig';
+import {firebaseConfig} from '../../../services/firebase';
 import _ from 'lodash';
 
 const getData = values => {
@@ -17,7 +17,7 @@ const getData = values => {
 const dispatchStateToProps = dispatch => {
   return {
     fetchWork: () => {
-      let workData = firebase.database().ref('/work');
+      let workData = firebaseConfig.database().ref('/work');
       workData.on('value', snapshot =>{
         dispatch({ type: 'FETCH_WORK_FULFILLED', payload: getData( snapshot.val() )});
       });

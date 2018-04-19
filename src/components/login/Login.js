@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-// import { withRouter, Redirect } from 'react-router-dom';
-import { auth } from '../../services/firebase';
+import { connect } from 'react-redux';
+import mapStateAuth from '../../store/auth/mapStateAction';
+import dispatchStateAuth from '../../store/auth/dispatchStateAction';
+import { Redirect } from 'react-router-dom';
 import * as routes from '../../constants/routes';
-
+import { firebaseConfig } from '../../services/firebase';
+import { isAuthenticated } from '../../services/firebase/auth';
+import '../../App.css';
+import './login.css';
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
@@ -11,59 +16,64 @@ const byPropKey = (propertyName, value) => () => ({
 const INITIAL_STATE = {
   email: '',
   password: '',
-  error: null,
+  error: false,
+  errorMessage: '',
+  redirectTo: false,
 };
 
 class Login extends Component {
   
   constructor(props){
     super(props);
-
     this.state = { ...INITIAL_STATE };
+    this.onSubmitLogin = this.onSubmit.bind(this);
   }
 
-  onSubmit = (event) => {
+  onSubmit = (e) => {
+    e.preventDefault();
     const {
       email,
       password,
     } = this.state;
 
-    const {
-      history,
-    } = this.props;
-
-    auth.doSignInWithEmailAndPassword( email, password )
-      .then( () => {
-        this.setState( () => ({...INITIAL_STATE}));
-        history.push(routes.DASHBOARD_MAIN);
-        console.log( email );
-        console.log( password );
+    firebaseConfig.auth().signInWithEmailAndPassword( email, password )
+      .then( (firebaseUser) => {
+        this.props.fetchUserData(firebaseUser);
+        this.props.userSignIn();
+        this.setState({redirectTo: isAuthenticated() });
       })
       .catch( error => {
-        this.setState( byPropKey('error', error ));
+        this.props.fetchUserDataReject(error);
+        this.setState({error: true, errorMessage: error});
       });
-      event.preventDefault();
   }
-
+  
   render() {
-    const { email, password, error } = this.state;
+    const { email, password, error, errorMessage, redirectTo } = this.state;
     const isInvalid = password === '' || email === '';
-
     return (
-      <div>
+      <div className="body-container__login">
+        {
+          redirectTo && (
+            <Redirect to={routes.DASHBOARD_MAIN} />
+          )
+        }
         <div className="container py-5">
           <div className="row">
             <div className="col-md-12">
               <h2 className="text-center mb-5">Dashboard Login</h2>
               <div className="row">
-                <div className="col-md-6 mx-auto">
+                <div className="col-md-4 mx-auto">
                   <span className="anchor" id="formLogin"></span>
                   <div className="card">
-                    <div className="card-header">
-                      <h3 className="mb-0">Login</h3>
-                    </div>
+                    
                     <div className="card-body">
-                      <form className="form" onSubmit={this.onSubmit}>
+                      <form className="form" onSubmit={this.onSubmitLogin}>
+
+                        <div className={error ? 'element-show alert alert-warning' : 'element.hide'} role="alert">
+                          { errorMessage.message }
+                        </div>
+                        
                         <div className="form-group">
                           <label htmlFor="username">Email</label>
                           <input 
@@ -87,8 +97,10 @@ class Login extends Component {
                             required="" 
                             placeholder="password..." />
                         </div>
-                        <button disabled={isInvalid} type="submit" className="btn btn-outline-primary btn-block">L O G I N</button>
-                        {error && <p>{error.message}</p>}
+                        <button disabled={isInvalid} type="submit" className="btn btn-outline-primary btn-block">
+                          <span className="btn-element btn-element--left"><i className="material-icons">lock_open</i></span>
+                          <span className="btn-element btn-element--right">&nbsp;Sign In</span>
+                        </button>
                       </form>
                     </div>
                   </div>
@@ -100,8 +112,11 @@ class Login extends Component {
       </div>
     );
   }
+  
+  componentDidMount(){
+    this.setState({ redirectTo: isAuthenticated() });
+  }
 
 }
 
-export default Login;
-
+export default connect(mapStateAuth, dispatchStateAuth)(Login);

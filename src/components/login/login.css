@@ -1,0 +1,30 @@
+/* 
+ * login.css
+ */
+body{
+  background-color: #f3f3f3;
+}
+label, p, h1, h2, h3, h4, h5, h6{
+  color: #666;
+}
+
+.body-container__login{
+  /*background-color: #cccccc;*/
+}
+
+.card{
+  border-radius: 0;
+}
+
+.logout-container{
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+
+}
+.icon-exit{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

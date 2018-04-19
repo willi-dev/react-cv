@@ -2,49 +2,91 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateSkill from '../../store/dashboard/skill/mapStateAction';
 import dispatchStateSkill from '../../store/dashboard/skill/dispatchStateAction';
+import { firebaseConfig } from '../../services/firebase';
 import Related from './Related';
+
+
+const byPropKey = ( propertyName, value ) => () => ({
+  [propertyName]: value
+})
+
+const INITIAL_STATE = {
+  skill_name: '',
+}
 
 class Skill extends Component {
   
+  constructor(props){
+    super(props);
+    this.state = {...INITIAL_STATE};
+    this.addSkill = this.addSkill.bind(this);
+  }
+
+  addSkill(e){
+    e.preventDefault();
+    const { skill_name } = this.state;
+    let data_skill = {
+      skill: skill_name
+    };
+    firebaseConfig.database().ref('skill').push(data_skill);
+    this.setState({skill_name: ''});
+  }
+
   componentWillMount() {
     this.props.fetchSkill();
   }
   
   render() {
+    const { skill_name } = this.state;
+    const isInvalid = skill_name === '';
     return (
       <div>
         <h1 className="display-4 dashboard-title">Skill</h1>
           <hr/>
-          
           <div className="row">
             <div className="col-md-6">
-              <form>
+              <form onSubmit={this.addSkill}>
                 <div className="form-group">
                   <label htmlFor="skill-name">Skill</label>
-                  <input type="text" className="form-control" id="skill-name" placeholder="Example: PHP"/>
+                  <input type="text" 
+                    className="form-control" 
+                    id="skill-name" 
+                    placeholder="Example: PHP"
+                    value={skill_name}
+                    onChange={event => this.setState(byPropKey('skill_name', event.target.value))}/>
                 </div>
                 <div className="form-group">
-                  <button className="btn btn-primary" type="submit">
-                    Add Skill
+                  <button disabled={isInvalid} className="btn btn-primary" type="submit">
+                    <span className="btn-element btn-element--left"><i className="material-icons">games</i> </span>
+                    <span className="btn-element btn-element--right">&nbsp;Add Skill</span>
                   </button>
                 </div>
               </form>
               <hr/>
               
-              <div>
-                {/*loop skill here*/}
-                <span className="skill-badge skill-badge__primary" > 
-                  PHP &nbsp;
-                  <span className="badge badge-light badge-delete">
-                    <i className="material-icons">close</i>
-                  </span> 
-                </span>
+              {
+                (!this.props.fetched) && (
+                  <div className="loading-container">
+                    <div className="spinner"></div>
+                  </div>
+                 )
+              }
+              <div className={!this.props.fetched ? 'element-hide': 'element-show'}>
+                {
+                  this.props.skill.map( (item, index) => (
+                    <span key={index} className="skill-badge skill-badge__primary" > 
+                      {item.skill} &nbsp;
+                      <span className="badge badge-light badge-delete">
+                        <i className="material-icons">close</i>
+                      </span> 
+                    </span>
+                  ))
+                }
+                
               </div>
 
             </div>
             
-
-            {/*replace it with Related component */}
             <Related />
           </div>
 

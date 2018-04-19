@@ -1,6 +1,4 @@
 
-
-/* DASHBOARD STYLE */
 .no-gutters {
   margin-right: 0;
   margin-left: 0; }
@@ -12,14 +10,25 @@
 button, a {
   cursor: pointer; }
 
-
-
-.open-menu {
-  font-size: 40px;
-  cursor: pointer;
-  position: absolute;
-  top: 25px;
-  left: 60px;
-  display: inline-block; 
+.card, .form-control, .btn{
+  border-radius:0; 
 }
-/* END DASHBOARD STYLE */
+
+.element-hide{
+  display: none;
+}
+
+.element-show{
+  display: block;
+}
+
+.btn-element{
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-element--left{
+  margin-top: 4px;
+}
+.btn-element--right{
+  
+}

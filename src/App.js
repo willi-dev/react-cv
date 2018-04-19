@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import firebaseConfig from './services/firebaseConfig';
+import {firebaseConfig} from './services/firebase';
 import _ from 'lodash';
+
+const INITIAL_STATE = {
+  education: [],
+  mainprofile: [],
+  personaldetail: [],
+  publication: [],
+  related: [],
+  skill: [],
+  training: [],
+  work: [],
+}
 
 class App extends Component {
   
   constructor(props){
     super(props);
-    this.state = {
-      education: [],
-      mainprofile: [],
-      personaldetail: [],
-      publication: [],
-      related: [],
-      skill: [],
-      training: [],
-      work: []
-    };
-
+    this.state = {...INITIAL_STATE};
   }
 
   componentWillMount(){
@@ -51,7 +52,6 @@ class App extends Component {
   }
 
   render() {
-    console.log( this.state );
     return (
       <div className="App">
       </div>
