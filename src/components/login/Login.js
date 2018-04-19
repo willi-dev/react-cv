@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
-import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import * as routes from '../../constants/routes';
 import { firebaseConfig } from '../../services/firebase';
+import { isAuthenticated } from '../../services/firebase/auth';
 import '../../App.css';
 import './login.css';
 
@@ -17,6 +18,7 @@ const INITIAL_STATE = {
   password: '',
   error: false,
   errorMessage: '',
+  redirectTo: false,
 };
 
 class Login extends Component {
@@ -38,21 +40,24 @@ class Login extends Component {
       .then( (firebaseUser) => {
         this.props.fetchUserData(firebaseUser);
         this.props.userSignIn();
-        localStorage.setItem('authUser', firebaseUser );
-        this.props.history.push(routes.DASHBOARD_MAIN);
+        this.setState({redirectTo: isAuthenticated() });
       })
       .catch( error => {
         this.props.fetchUserDataReject(error);
-        this.setState({errorMessage: error});
-        this.setState({error: true});
+        this.setState({error: true, errorMessage: error});
       });
   }
-
+  
   render() {
-    const { email, password, error, errorMessage } = this.state;
+    const { email, password, error, errorMessage, redirectTo } = this.state;
     const isInvalid = password === '' || email === '';
     return (
       <div className="body-container__login">
+        {
+          redirectTo && (
+            <Redirect to={routes.DASHBOARD_MAIN} />
+          )
+        }
         <div className="container py-5">
           <div className="row">
             <div className="col-md-12">
@@ -107,7 +112,11 @@ class Login extends Component {
       </div>
     );
   }
+  
+  componentDidMount(){
+    this.setState({ redirectTo: isAuthenticated() });
+  }
 
 }
 
-export default withRouter(connect(mapStateAuth, dispatchStateAuth)(Login));
+export default connect(mapStateAuth, dispatchStateAuth)(Login);
