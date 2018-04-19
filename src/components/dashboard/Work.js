@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateWork from '../../store/dashboard/work/mapStateAction';
 import dispatchStateWork from '../../store/dashboard/work/dispatchStateAction';
+import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -19,7 +20,27 @@ class Work extends Component {
   constructor(props){
     super(props);
     this.state = {...INITIAL_STATE};
+    this.addWork = this.addWork.bind(this);
   }
+
+  addWork(e){
+    e.preventDefault();
+    const { position, company, period, work_description } = this.state;
+    let data_work = {
+      position: position,
+      company: company,
+      period: period,
+      description: work_description,
+    }
+    firebaseConfig.database().ref('work').push(data_work);
+    this.setState({
+      position: '',
+      company: '',
+      period: '',
+      work_description: '',
+    })
+  }
+
   componentWillMount() {
     this.props.fetchWork();
   }
@@ -27,15 +48,12 @@ class Work extends Component {
   render() {
     const { position, company, period, work_description } = this.state;
     const isInvalid = position === '' || company === '' || period === '' || work_description === '';
-    if( this.props.fetched ){
-      console.log( this.props.work )
-    }
+    
     return (
       <div>
-        
         <h1 className="display-4 dashboard-title">Work Experiences</h1>
         <hr/>
-        <form>
+        <form onSubmit={this.addWork}>
           <div className="form-group">
             <label htmlFor="work-position">Position</label>
             <input type="text" 
@@ -75,7 +93,7 @@ class Work extends Component {
           </div>
           <div className="form-group">
             <button disabled={isInvalid} className="btn btn-primary" type="submit">
-              <span className="btn-element btn-element--left"><i class="material-icons">work</i> </span>
+              <span className="btn-element btn-element--left"><i className="material-icons">work</i> </span>
               <span className="btn-element btn-element--right">&nbsp;Save Work Experience</span>
             </button>
           </div>

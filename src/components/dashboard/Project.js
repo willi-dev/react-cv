@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateProject from '../../store/dashboard/project/mapStateAction';
 import dispatchStateProject from '../../store/dashboard/project/dispatchStateAction';
+import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -19,7 +20,27 @@ class Project extends Component {
   constructor(props){
     super(props);
     this.state = {...INITIAL_STATE};
+    this.addProject = this.addProject.bind(this);
   }
+
+  addProject(e){
+    e.preventDefault();
+    const { project_name, project_company, project_period, project_description } = this.state;
+    let data_project = {
+      name: project_name,
+      company: project_company,
+      period: project_period,
+      description: project_description,
+    }
+    firebaseConfig.database().ref('project').push(data_project);
+    this.setState({
+      project_name: '',
+      project_company: '',
+      project_period: '',
+      project_description: '',
+    });
+  }
+
   componentWillMount() {
     this.props.fetchProject();
   }
@@ -31,7 +52,7 @@ class Project extends Component {
       <div>
         <h1 className="display-4 dashboard-title">Project</h1>
         <hr/>
-        <form>
+        <form onSubmit={this.addProject}>
           <div className="form-group">
             <label htmlFor="project-name">Project Name</label>
             <input type="text" 
@@ -101,10 +122,10 @@ class Project extends Component {
               this.props.project.map((item, index) => (
                 <tr key={index}>
                   <td>{index+1}</td>
-                  <td>{item.project_name}</td>
-                  <td>{item.project_company}</td>
-                  <td>{item.project_period}</td>
-                  <td>{item.project_description}</td>
+                  <td>{item.name}</td>
+                  <td>{item.company}</td>
+                  <td>{item.period}</td>
+                  <td>{item.description}</td>
                   <td>
                     <div className="btn-group btn-group-sm" role="group" aria-label="Action">
                       <button type="button" className="btn btn-secondary">

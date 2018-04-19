@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateEdu from '../../store/dashboard/education/mapStateAction';
 import dispatchStateEdu from '../../store/dashboard/education/dispatchStateAction';
+import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -18,6 +19,23 @@ class Education extends Component {
   constructor(props){
     super(props);
     this.state = {...INITIAL_STATE};
+    this.addEducation = this.addEducation.bind(this);
+  }
+  
+  addEducation(e){
+    e.preventDefault();
+    const {school, edu_period, edu_description} = this.state;
+    let data_education = {
+      description: edu_description,
+      period: edu_period,
+      school: school,
+    }
+    firebaseConfig.database().ref('education').push(data_education);
+    this.setState({
+      school: '',
+      edu_period: '',
+      edu_description: '',
+    })
   }
 
   componentWillMount() {
@@ -32,7 +50,7 @@ class Education extends Component {
       <div>
         <h1 className="display-4 dashboard-title">Education</h1>
         <hr/>
-        <form>
+        <form onSubmit={this.addEducation}>
           <div className="form-group">
             <label htmlFor="education-school">School</label>
             <input type="text" 

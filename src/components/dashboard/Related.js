@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateRelated from '../../store/dashboard/related/mapStateAction';
 import dispatchStateRelated from '../../store/dashboard/related/dispatchStateAction';
+import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -16,6 +17,17 @@ class Related extends Component {
   constructor( props ){
     super(props);
     this.state = {...INITIAL_STATE};
+    this.addRelatedTools = this.addRelatedTools.bind(this);
+  }
+  
+  addRelatedTools(e){
+    e.preventDefault();
+    const { relatedtools_name } = this.state;
+    let data_related = {
+      relatedtools: relatedtools_name
+    };
+    firebaseConfig.database().ref('related').push(data_related);
+    this.setState({relatedtools_name: ''});
   }
 
   componentWillMount() {
@@ -27,7 +39,7 @@ class Related extends Component {
     const isInvalid = relatedtools_name ==='';
     return (
       <div className="col-md-6">
-        <form>
+        <form onSubmit={this.addRelatedTools}>
           <div className="form-group">
             <label htmlFor="relatedtools-name">Related Development Tools</label>
             <input type="text" 
@@ -39,7 +51,7 @@ class Related extends Component {
           </div>
           <div className="form-group">
             <button disabled={isInvalid} className="btn btn-success" type="submit">
-              <span className="btn-element btn-element--left"><i class="material-icons">format_paint</i> </span>
+              <span className="btn-element btn-element--left"><i className="material-icons">format_paint</i> </span>
               <span className="btn-element btn-element--right">&nbsp;Add Related Development Tools</span>
             </button>
           </div>

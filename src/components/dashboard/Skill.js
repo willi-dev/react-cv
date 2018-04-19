@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateSkill from '../../store/dashboard/skill/mapStateAction';
 import dispatchStateSkill from '../../store/dashboard/skill/dispatchStateAction';
+import { firebaseConfig } from '../../services/firebase';
 import Related from './Related';
+
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -17,6 +19,17 @@ class Skill extends Component {
   constructor(props){
     super(props);
     this.state = {...INITIAL_STATE};
+    this.addSkill = this.addSkill.bind(this);
+  }
+
+  addSkill(e){
+    e.preventDefault();
+    const { skill_name } = this.state;
+    let data_skill = {
+      skill: skill_name
+    };
+    firebaseConfig.database().ref('skill').push(data_skill);
+    this.setState({skill_name: ''});
   }
 
   componentWillMount() {
@@ -30,10 +43,9 @@ class Skill extends Component {
       <div>
         <h1 className="display-4 dashboard-title">Skill</h1>
           <hr/>
-          
           <div className="row">
             <div className="col-md-6">
-              <form>
+              <form onSubmit={this.addSkill}>
                 <div className="form-group">
                   <label htmlFor="skill-name">Skill</label>
                   <input type="text" 
@@ -45,7 +57,7 @@ class Skill extends Component {
                 </div>
                 <div className="form-group">
                   <button disabled={isInvalid} className="btn btn-primary" type="submit">
-                    <span className="btn-element btn-element--left"><i class="material-icons">games</i> </span>
+                    <span className="btn-element btn-element--left"><i className="material-icons">games</i> </span>
                     <span className="btn-element btn-element--right">&nbsp;Add Skill</span>
                   </button>
                 </div>

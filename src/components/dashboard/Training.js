@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateTraining from '../../store/dashboard/training/mapStateAction';
 import dispatchStateTraining from '../../store/dashboard/training/dispatchStateAction';
+import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -18,6 +19,19 @@ class Training extends Component {
   constructor(props){
     super(props);
     this.state = {...INITIAL_STATE};
+    this.addTraining = this.addTraining.bind(this);
+  }
+  
+  addTraining(e){
+    e.preventDefault();
+    const { name, place, year } = this.state;
+    let data_training = {
+      name: name,
+      place: place,
+      year: year
+    }
+    firebaseConfig.database().ref('training').push(data_training);
+    this.setState({ name: '', place: '', year: '' });
   }
 
   componentWillMount() {
@@ -31,7 +45,7 @@ class Training extends Component {
       <div>
         <h1 className="display-4 dashboard-title">Training</h1>
         <hr/>
-        <form>
+        <form onSubmit={this.addTraining}> 
           <div className="form-group">
             <label htmlFor="training-name">Training Name</label>
             <input type="text" 

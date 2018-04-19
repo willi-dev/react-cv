@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStatePublication from '../../store/dashboard/publication/mapStateAction';
 import dispatchStatePublication from '../../store/dashboard/publication/dispatchStateAction';
+import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -18,6 +19,23 @@ class Publication extends Component {
   constructor(props){
     super(props);
     this.state = { ...INITIAL_STATE };
+    this.addPublication = this.addPublication.bind(this);
+  }
+
+  addPublication(e){
+    e.preventDefault();
+    const { publication_name, publication_description, publication_link } = this.state;
+    let data_publication = {
+      publication: publication_name,
+      description: publication_description,
+      link: publication_link, 
+    }
+    firebaseConfig.database().ref('publication').push(data_publication);
+    this.setState({
+      publication_name: '',
+      publication_description: '',
+      publication_link: '',
+    })
   }
 
   componentWillMount() {
@@ -32,7 +50,7 @@ class Publication extends Component {
       <div>
         <h1 className="display-4 dashboard-title">Publication</h1>
         <hr/>
-        <form>
+        <form onSubmit={this.addPublication}>
           <div className="form-group">
             <label htmlFor="publication-name">Publication</label>
             <input type="text" 
