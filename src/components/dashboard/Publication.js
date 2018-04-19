@@ -97,7 +97,7 @@ class Publication extends Component {
            )
         }
 
-        <div className={!this.props.fetched ? 'element-hide': 'element-show'}>
+        <div className={!this.props.fetched && this.props.publication.length > 0 ? 'element-hide': 'element-show'}>
           <table className="table">
             <thead className="thead-dark">
               <tr>
@@ -131,6 +131,11 @@ class Publication extends Component {
               }
             </tbody>
           </table>
+        </div>
+        <div className={this.props.fetched && this.props.publication.length === 0 ? 'element-show': 'element-hide'}>
+          <div className="alert alert-warning">
+            Publication Unavailable
+          </div>
         </div>
       </div>
     );
