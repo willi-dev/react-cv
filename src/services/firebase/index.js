@@ -1,5 +1,5 @@
 import * as auth from './auth';
-import firebaseConfig from './firebase';
+import {firebaseConfig} from './firebase';
 
 export {
   auth,

@@ -4,8 +4,7 @@ import React, {Component} from 'react';
 // import dispatchStateAuth from '../../store/auth/dispatchStateAction';
 import { Redirect } from 'react-router-dom';
 import * as routes from '../../constants/routes';
-import { firebaseConfig } from '../../services/firebase';
-import { isAuthenticated } from '../../services/firebase/auth';
+import { auth } from '../../services/firebase';
 import './login.css';
 
 const INITIAL_STATE = {
@@ -41,11 +40,11 @@ class Logout extends Component {
 
   componentDidMount(){
     let _this = this;
-    firebaseConfig.auth().signOut()
+    auth.doSignOut()
       .then( function() {
         localStorage.removeItem('authUser');
         if( localStorage.getItem('authUser') === null ){
-          _this.setState({ isAuth: isAuthenticated(), redirectTo: true })
+          _this.setState({ isAuth: auth.isAuthenticated(), redirectTo: true })
         }
       }, function(error){
         console.log(error)

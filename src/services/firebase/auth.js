@@ -1,25 +1,25 @@
-import firebaseConfig from './firebase';
+import { auth } from './firebase';
 
 // Sign Up
 export const doCreateUserWithEmailAndPassword = (email, password) =>
-  firebaseConfig.auth().createUserWithEmailAndPassword(email, password);
+  auth.createUserWithEmailAndPassword(email, password);
 
 // Sign In
 export const doSignInWithEmailAndPassword = (email, password) => 
-  firebaseConfig.auth().signInWithEmailAndPassword(email, password);
+  auth.signInWithEmailAndPassword(email, password);
 
 // Sign Out
 export const doSignOut = () =>
-  firebaseConfig.auth().signOut();
+  auth.signOut();
 
 // Password Reset
 export const doPasswordReset = (email) => 
-  firebaseConfig.auth().sendPasswordResetEmail(email);
+  auth.sendPasswordResetEmail(email);
 
 // Password Change
 export const doPasswordUpdate = (password) =>
-  firebaseConfig.auth().currentUser.updatePassword(password);
+  auth.currentUser.updatePassword(password);
 
 export const isAuthenticated = () => {
-  return !!firebaseConfig.auth().currentUser || !!localStorage.getItem('authUser'); 
+  return !!auth.currentUser || !!localStorage.getItem('authUser'); 
 }

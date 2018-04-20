@@ -1,4 +1,4 @@
-import { firebaseConfig } from '../../services/firebase';
+import { auth } from '../../services/firebase/firebase';
 
 const dispatchStateToProps = dispatch => {
 	return {
@@ -21,7 +21,7 @@ const dispatchStateToProps = dispatch => {
 		},
 
 		userSignIn: () => {
-			firebaseConfig.auth().onAuthStateChanged( (authUser) => {
+			auth.onAuthStateChanged( (authUser) => {
 				if(authUser){
 					// dispatch({ type: 'FETCH_USER_DATA_FULFILLED', payload: JSON.stringify(authUser) } );
 					dispatch({ type: 'USER_SIGNIN' });

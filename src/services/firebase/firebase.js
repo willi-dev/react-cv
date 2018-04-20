@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 
 var config = {
   apiKey: "AIzaSyDdPKeAue0qqpDMj7sbqGY9IgRolAe_FkI",
@@ -8,10 +8,14 @@ var config = {
   storageBucket: "willicv-8d052.appspot.com",
   messagingSenderId: "323654850234"
 }
-
+const firebaseConfig = firebase.initializeApp(config);
 // if (!firebase.apps.length) {
 //   firebase.initializeApp(config);
 // }
-const firebaseConfig = firebase.initializeApp(config);
+const auth = firebase.auth();
 
-export default firebaseConfig;
+
+export {
+  auth,
+  firebaseConfig
+};  

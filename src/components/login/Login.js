@@ -4,8 +4,7 @@ import mapStateAuth from '../../store/auth/mapStateAction';
 import dispatchStateAuth from '../../store/auth/dispatchStateAction';
 import { Redirect } from 'react-router-dom';
 import * as routes from '../../constants/routes';
-import { firebaseConfig } from '../../services/firebase';
-import { isAuthenticated } from '../../services/firebase/auth';
+import { auth } from '../../services/firebase';
 import '../../App.css';
 import './login.css';
 
@@ -36,11 +35,11 @@ class Login extends Component {
       password,
     } = this.state;
 
-    firebaseConfig.auth().signInWithEmailAndPassword( email, password )
+    auth.doSignInWithEmailAndPassword( email, password )
       .then( (firebaseUser) => {
         this.props.fetchUserData(firebaseUser);
         this.props.userSignIn();
-        this.setState({redirectTo: isAuthenticated() });
+        this.setState({redirectTo: auth.isAuthenticated() });
       })
       .catch( error => {
         this.props.fetchUserDataReject(error);
@@ -114,7 +113,7 @@ class Login extends Component {
   }
   
   componentDidMount(){
-    this.setState({ redirectTo: isAuthenticated() });
+    this.setState({ redirectTo: auth.isAuthenticated() });
   }
 
 }
