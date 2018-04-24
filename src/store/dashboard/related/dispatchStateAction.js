@@ -22,7 +22,15 @@ const dispatchStateToProps = dispatch => {
         dispatch({ type: 'FETCH_RELATED_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
-    
+    addRelated: ( dataRelated ) => {
+      firebaseConfig.database().ref('related').push( dataRelated, function( error ){
+        if( error ){
+          dispatch( { type: 'ADD_RELATED_ERROR' } );
+        }else{
+          dispatch( { type: 'ADD_RELATED_SUCCESS' } );
+        }
+      })
+    }    
     // code here
 
   }

@@ -29,6 +29,16 @@ const reducer = ( state = initialState, action ) => {
         error: action.payload
       }
     }
+    case 'ADD_EDU_SUCCESS': {
+      return {
+        ...state,
+      }
+    }
+    case 'ADD_EDU_ERROR': {
+      return {
+        ...state,
+      }
+    }
     default: {
       return state;
     }

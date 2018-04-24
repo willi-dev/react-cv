@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateTraining from '../../store/dashboard/training/mapStateAction';
 import dispatchStateTraining from '../../store/dashboard/training/dispatchStateAction';
-import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -30,7 +29,7 @@ class Training extends Component {
       place: place,
       year: year
     }
-    firebaseConfig.database().ref('training').push(data_training);
+    this.props.addTraining( data_training );
     this.setState({ name: '', place: '', year: '' });
   }
 

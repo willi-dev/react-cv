@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateEdu from '../../store/dashboard/education/mapStateAction';
 import dispatchStateEdu from '../../store/dashboard/education/dispatchStateAction';
-import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -30,7 +29,7 @@ class Education extends Component {
       period: edu_period,
       school: school,
     }
-    firebaseConfig.database().ref('education').push(data_education);
+    this.props.addEducation( data_education );
     this.setState({
       school: '',
       edu_period: '',

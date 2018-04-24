@@ -22,7 +22,15 @@ const dispatchStateToProps = dispatch => {
         dispatch({ type: 'FETCH_EDU_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
-    
+    addEducation: ( dataEdu ) => {
+      firebaseConfig.database().ref('education').push(dataEdu, function(error){
+        if( error ){
+          dispatch( { type: 'ADD_EDU_ERROR' } );
+        }else {
+          dispatch( { type: 'ADD_EDU_SUCCESS' } );
+        }
+      })
+    }
     // code here
 
   }

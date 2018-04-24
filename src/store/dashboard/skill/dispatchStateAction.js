@@ -22,7 +22,15 @@ const dispatchStateToProps = dispatch => {
         dispatch({ type: 'FETCH_SKILL_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
-    
+    addSkill: (dataSkill) => {
+      firebaseConfig.database().ref('skill').push(dataSkill, function(error){
+        if( error ){
+          dispatch( { type: 'ADD_SKILL_ERROR' } );
+        }else{
+          dispatch( { type: 'ADD_SKILL_SUCCESS' } );
+        }
+      })
+    }
     // code here
 
   }

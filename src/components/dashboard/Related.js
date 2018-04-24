@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateRelated from '../../store/dashboard/related/mapStateAction';
 import dispatchStateRelated from '../../store/dashboard/related/dispatchStateAction';
-import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -26,7 +25,7 @@ class Related extends Component {
     let data_related = {
       relatedtools: relatedtools_name
     };
-    firebaseConfig.database().ref('related').push(data_related);
+    this.props.addRelated( data_related );
     this.setState({relatedtools_name: ''});
   }
 

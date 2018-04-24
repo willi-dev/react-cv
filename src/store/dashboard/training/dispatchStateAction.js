@@ -22,7 +22,15 @@ const dispatchStateToProps = dispatch => {
         dispatch({ type: 'FETCH_TRAINING_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
-    
+    addTraining: (dataTraining) => {
+      firebaseConfig.database().ref('training').push( dataTraining, function(error){
+        if(error){
+          dispatch({ type: 'ADD_TRAINING_ERROR' });
+        }else{
+          dispatch({ type: 'ADD_TRAINING_SUCCESS' });
+        }
+      })
+    }
     // code here
 
   }

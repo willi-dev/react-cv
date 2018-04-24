@@ -22,7 +22,15 @@ const dispatchStateToProps = dispatch => {
         dispatch({ type: 'FETCH_PROJECT_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
-    
+    addProject: ( dataProject ) => {
+      firebaseConfig.database().ref('project').push( dataProject, function(error){
+        if( error ){
+          dispatch( { type: 'ADD_PROJECT_ERROR' } );
+        }else{
+          dispatch( { type: 'ADD_PROJECT_SUCCESS' } );
+        }
+      })
+    }
     // code here
 
   }

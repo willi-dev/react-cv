@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateWork from '../../store/dashboard/work/mapStateAction';
 import dispatchStateWork from '../../store/dashboard/work/dispatchStateAction';
-import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -32,7 +31,7 @@ class Work extends Component {
       period: period,
       description: work_description,
     }
-    firebaseConfig.database().ref('work').push(data_work);
+    this.props.addWork(data_work);
     this.setState({
       position: '',
       company: '',

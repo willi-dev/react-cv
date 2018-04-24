@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateSkill from '../../store/dashboard/skill/mapStateAction';
 import dispatchStateSkill from '../../store/dashboard/skill/dispatchStateAction';
-import { firebaseConfig } from '../../services/firebase';
-import Related from './Related';
 
+import Related from './Related';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -28,7 +27,7 @@ class Skill extends Component {
     let data_skill = {
       skill: skill_name
     };
-    firebaseConfig.database().ref('skill').push(data_skill);
+    this.props.addSkill( data_skill );
     this.setState({skill_name: ''});
   }
 

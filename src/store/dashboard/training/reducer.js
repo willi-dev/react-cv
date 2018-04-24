@@ -29,7 +29,16 @@ const reducer = ( state = initialState, action ) => {
         error: action.payload
       }
     }
-
+    case 'ADD_TRAINING_SUCCESS': {
+      return {
+        ...state,
+      }
+    }
+    case 'ADD_TRAINING_ERROR': {
+      return {
+        ...state,
+      }
+    }
     default: {
       return state;
     }

@@ -22,6 +22,15 @@ const dispatchStateToProps = dispatch => {
         dispatch({ type: 'FETCH_WORK_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
+    addWork: (dataWork) => {
+      firebaseConfig.database().ref('work').push(dataWork, function( error ){
+        if( error ){
+          dispatch( { type: 'ADD_WORK_ERROR' } );
+        }else{
+          dispatch( { type: 'ADD_WORK_SUCCESS' } );
+        }
+      })
+    }
     
     // code here
 

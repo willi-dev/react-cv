@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateProject from '../../store/dashboard/project/mapStateAction';
 import dispatchStateProject from '../../store/dashboard/project/dispatchStateAction';
-import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -32,7 +31,7 @@ class Project extends Component {
       period: project_period,
       description: project_description,
     }
-    firebaseConfig.database().ref('project').push(data_project);
+    this.props.addProject( data_project );
     this.setState({
       project_name: '',
       project_company: '',
