@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStatePublication from '../../store/dashboard/publication/mapStateAction';
 import dispatchStatePublication from '../../store/dashboard/publication/dispatchStateAction';
-import { firebaseConfig } from '../../services/firebase';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -30,7 +29,7 @@ class Publication extends Component {
       description: publication_description,
       link: publication_link, 
     }
-    firebaseConfig.database().ref('publication').push(data_publication);
+    this.props.addPublication(data_publication);
     this.setState({
       publication_name: '',
       publication_description: '',

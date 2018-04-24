@@ -22,7 +22,16 @@ const dispatchStateToProps = dispatch => {
         dispatch({ type: 'FETCH_PUBLICATION_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
-    
+    addPublication: ( dataPublication ) => {
+      firebaseConfig.database().ref('publication').push(dataPublication, function(error){
+        if(error){
+          dispatch({ type: 'ADD_PUBLICATON_ERROR' });
+        }else{
+          dispatch({ type: 'ADD_PUBLICATION_SUCCESS' });
+        }
+      });
+    },
+
     // code here
 
   }

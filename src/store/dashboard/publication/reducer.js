@@ -29,6 +29,19 @@ const reducer = ( state = initialState, action ) => {
         error: action.payload
       }
     }
+    
+    case 'ADD_PUBLICATION_SUCCESS': {
+      return {
+        ...state,
+      }
+    }
+
+    case 'ADD_PUBLICATION_ERROR': {
+      return {
+        ...state,
+      }
+    }
+
 
     default: {
       return state;
