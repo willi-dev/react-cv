@@ -8,12 +8,13 @@ var config = {
   storageBucket: "YOUR-FIREBASE-STORAGE-BUCKET",
   messagingSenderId: "YOUR-FIREBASE-MESSAGINGSENDER-ID"
 }
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(config);
-}
+const firebaseConfig = firebase.initializeApp(config);
+// if (!firebase.apps.length) {
+//   firebase.initializeApp(config);
+// }
 const auth = firebase.auth();
 
 export {
-  auth
+  auth,
+  firebaseConfig
 };  
