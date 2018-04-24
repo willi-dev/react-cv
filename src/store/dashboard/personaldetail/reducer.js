@@ -19,7 +19,7 @@ const reducer = ( state = initialState, action ) => {
         ...state,
         fetching: false,
         fetched: true,
-        education: action.payload
+        personaldetail: action.payload
       }
     }
     case 'FETCH_PERSONAL_REJECTED': {
