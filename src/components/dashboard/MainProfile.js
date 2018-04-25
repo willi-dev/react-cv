@@ -30,7 +30,17 @@ class MainProfile extends Component {
 
   onEditMainProfile(e){
     e.preventDefault();
-    this.setState({editForm: true})
+    this.setState({
+      editForm: true,
+      name: this.props.main[0].nameProfile,
+      job_title: this.props.main[0].jobTitle,
+      phone: this.props.main[0].phone,
+      address: this.props.main[0].address,
+      email: this.props.main[0].email,
+      linkedin: this.props.main[0].linkedin,
+      github: this.props.main[0].github,
+      blog: '',
+    })
   }
 
   cancelEdit(e){
@@ -40,11 +50,25 @@ class MainProfile extends Component {
 
   componentWillMount() {
     this.props.fetchMainProfile();
+
+    // if(this.props.fetched && this.props.main.length > 0 ){
+    //   this.setState({
+    //     name: this.props.main[0].nameProfile,
+    //     job_title: this.props.main[0].jobTitle,
+    //     phone: this.props.main[0].phone,
+    //     address: this.props.main[0].address,
+    //     email: this.props.main[0].email,
+    //     linkedin: this.props.main[0].linkedin,
+    //     github: this.props.main[0].github,
+    //     blog: '',
+    //   })
+    // }
   }
 
   render() {
     const { name, job_title, phone, address, email, linkedin, github, blog, editForm } = this.state;
     const isInvalid = name === '' || job_title === '' || phone === '' || address === '' || email === '';
+
     return (
       <div>
           <h1 className="display-4 dashboard-title">Main Profile</h1>
@@ -112,6 +136,7 @@ class MainProfile extends Component {
           </div>
 
           <div className={this.props.fetched && this.props.main.length > 0 ? 'element-show': 'element-hide'}>
+           
             <div className="form-group">
               <label htmlFor="main-profile-name">Name</label>
               <input disabled={!editForm}
@@ -167,7 +192,7 @@ class MainProfile extends Component {
               }
               { 
                 editForm && (
-                  <div class="btn-group" role="group" aria-label="Button Edit Form">
+                  <div className="btn-group" role="group" aria-label="Button Edit Form">
                     <button className="btn btn-success" onClick={this.saveEdit} >
                       Save Edit
                     </button>
