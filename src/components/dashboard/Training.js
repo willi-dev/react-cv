@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateTraining from '../../store/dashboard/training/mapStateAction';
 import dispatchStateTraining from '../../store/dashboard/training/dispatchStateAction';
+import Loading from '../general/Loading';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -83,9 +84,7 @@ class Training extends Component {
 
         {
           (!this.props.fetched) && (
-            <div className="loading-container">
-              <div className="spinner"></div>
-            </div>
+            <Loading />
            )
         }
 

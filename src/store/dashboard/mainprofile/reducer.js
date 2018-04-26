@@ -29,6 +29,26 @@ const reducer = ( state = initialState, action ) => {
         error: action.payload
       }
     }
+    case 'ADD_MAIN_SUCCESS': {
+      return {
+        ...state
+      }
+    }
+    case 'ADD_MAIN_ERROR': {
+      return {
+        ...state
+      }
+    }
+    case 'EDIT_MAIN_PROFILE': {
+      return {
+        ...state
+      }
+    }
+    case 'CANCEL_EDIT_MAIN_PROFILE': {
+      return {
+        ...state
+      }
+    }
 
     default: {
       return state;

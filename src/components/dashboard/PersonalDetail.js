@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStatePersonal from '../../store/dashboard/personaldetail/mapStateAction';
 import dispatchStatePersonal from '../../store/dashboard/personaldetail/dispatchStateAction';
+import Loading from '../general/Loading';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -48,9 +49,7 @@ class PersonalDetail extends Component {
         <hr/>
         {
           (!this.props.fetched) && (
-            <div className="loading-container">
-              <div className="spinner"></div>
-            </div>
+            <Loading />
            )
         }
         <div className={this.props.fetched && this.props.personal.length === 0 ? 'element-show': 'element-hide'}>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateRelated from '../../store/dashboard/related/mapStateAction';
 import dispatchStateRelated from '../../store/dashboard/related/dispatchStateAction';
+import Loading from '../general/Loading';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -59,9 +60,7 @@ class Related extends Component {
 
         {
           (!this.props.fetched) && (
-            <div className="loading-container">
-              <div className="spinner"></div>
-            </div>
+            <Loading />
            )
         }
         <div className={!this.props.fetched ? 'element-hide': 'element-show'}>

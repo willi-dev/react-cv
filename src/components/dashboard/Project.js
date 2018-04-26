@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateProject from '../../store/dashboard/project/mapStateAction';
 import dispatchStateProject from '../../store/dashboard/project/dispatchStateAction';
+import Loading from '../general/Loading';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -99,9 +100,7 @@ class Project extends Component {
 
         {
           (!this.props.fetched) && (
-            <div className="loading-container">
-              <div className="spinner"></div>
-            </div>
+            <Loading />
            )
         }
         <div className={this.props.fetched && this.props.project.length > 0 ? 'element-show': 'element-hide'}>

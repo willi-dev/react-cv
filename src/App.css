@@ -29,6 +29,9 @@ button, a {
 .btn-element--left{
   margin-top: 4px;
 }
+.btn-element--left i{
+  font-size: 18px;
+}
 .btn-element--right{
   
 }

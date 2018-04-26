@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateSkill from '../../store/dashboard/skill/mapStateAction';
 import dispatchStateSkill from '../../store/dashboard/skill/dispatchStateAction';
-
+import Loading from '../general/Loading';
 import Related from './Related';
 
 const byPropKey = ( propertyName, value ) => () => ({
@@ -65,9 +65,7 @@ class Skill extends Component {
               
               {
                 (!this.props.fetched) && (
-                  <div className="loading-container">
-                    <div className="spinner"></div>
-                  </div>
+                  <Loading />
                  )
               }
               <div className={!this.props.fetched ? 'element-hide': 'element-show'}>
