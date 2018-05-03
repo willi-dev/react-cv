@@ -4,6 +4,7 @@ import mapStateSkill from '../../store/dashboard/skill/mapStateAction';
 import dispatchStateSkill from '../../store/dashboard/skill/dispatchStateAction';
 import Loading from '../general/Loading';
 import Related from './Related';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -11,6 +12,9 @@ const byPropKey = ( propertyName, value ) => () => ({
 
 const INITIAL_STATE = {
   skill_name: '',
+  modal: false,
+  selectedSkill: '',
+  selectedId: '',
 }
 
 class Skill extends Component {
@@ -19,6 +23,7 @@ class Skill extends Component {
     super(props);
     this.state = {...INITIAL_STATE};
     this.addSkill = this.addSkill.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   addSkill(e){
@@ -34,9 +39,23 @@ class Skill extends Component {
   componentWillMount() {
     this.props.fetchSkill();
   }
-  
+
+  toggle = (passData) => e => {
+    e.preventDefault();
+    const { type, skill, id } = passData;
+    this.setState({
+      modal: !this.state.modal,
+      selectedSkill: skill,
+      selectedId: id
+    });
+    if( type === 'delete' ){
+      // do action 
+      this.props.deleteSkill(id, skill);
+    }
+  }
+
   render() {
-    const { skill_name } = this.state;
+    const { skill_name, modal, selectedSkill, selectedId } = this.state;
     const isInvalid = skill_name === '';
     return (
       <div>
@@ -56,8 +75,7 @@ class Skill extends Component {
                 </div>
                 <div className="form-group">
                   <button disabled={isInvalid} className="btn btn-primary" type="submit">
-                    <span className="btn-element btn-element--left"><i className="material-icons">games</i> </span>
-                    <span className="btn-element btn-element--right">&nbsp;Add Skill</span>
+                    Add Skill
                   </button>
                 </div>
               </form>
@@ -73,7 +91,7 @@ class Skill extends Component {
                   this.props.skill.map( (item, index) => (
                     <span key={index} className="skill-badge skill-badge__primary" > 
                       {item.skill} &nbsp;
-                      <span className="badge badge-light badge-delete">
+                      <span className="badge badge-light badge-delete" onClick={ this.toggle( {type:'open', skill: item.skill, id: item.key } ) }>
                         <i className="material-icons">close</i>
                       </span> 
                     </span>
@@ -81,6 +99,17 @@ class Skill extends Component {
                 }
                 
               </div>
+
+              <Modal isOpen={modal} toggle={this.toggle} className={this.props.className}>
+                <ModalHeader toggle={ this.toggle( {type:'close', skill: '', id:''} ) }>Delete this skill?</ModalHeader>
+                <ModalBody>
+                  Skill: {selectedSkill}
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" onClick={ this.toggle( {type:'delete', skill: selectedSkill, id: selectedId } ) }>Delete</Button>{' '}
+                  <Button color="secondary" onClick={ this.toggle( {type:'close', skill: '', id: '' } ) }>Cancel</Button>
+                </ModalFooter>
+              </Modal>
 
             </div>
             

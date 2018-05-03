@@ -30,8 +30,16 @@ const dispatchStateToProps = dispatch => {
           dispatch( { type: 'ADD_RELATED_SUCCESS' } );
         }
       })
-    }    
-    // code here
+    },
+    deleteRelated: (idTool, itemTool) => {
+      firebaseConfig.database().ref('related').child(idTool).remove( function( error ) {
+        if( error ){
+          dispatch( { type: 'DELETE_RELATED_ERROR', payload: error } );
+        }else{
+          dispatch( { type: 'DELETE_RELATED_SUCCESS' });
+        }
+      });
+    }
 
   }
 }

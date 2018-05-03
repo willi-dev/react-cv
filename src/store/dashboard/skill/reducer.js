@@ -37,6 +37,18 @@ const reducer = ( state = initialState, action ) => {
     case 'ADD_SKILL_ERROR': {
       return {
         ...state,
+        error: action.payload
+      }
+    }
+    case 'DELETE_SKILL_SUCCESS': {
+      return {
+        ...state,
+      }
+    }
+    case 'DELETE_SKILL_ERROR': {
+      return {
+        ...state,
+        error: action.payload
       }
     }
     default: {

@@ -25,14 +25,21 @@ const dispatchStateToProps = dispatch => {
     addSkill: (dataSkill) => {
       firebaseConfig.database().ref('skill').push(dataSkill, function(error){
         if( error ){
-          dispatch( { type: 'ADD_SKILL_ERROR' } );
+          dispatch( { type: 'ADD_SKILL_ERROR', payload: error } );
         }else{
           dispatch( { type: 'ADD_SKILL_SUCCESS' } );
         }
       })
+    }, 
+    deleteSkill: (idSkill, itemSkill) => {
+      firebaseConfig.database().ref('skill').child(idSkill).remove( function( error ){
+        if( error ){
+          dispatch( { type: 'DELETE_SKILL_ERROR', payload: error });
+        }else{
+          dispatch( { type: 'DELETE_SKILL_SUCCESS' });
+        }
+      });
     }
-    // code here
-
   }
 }
 
