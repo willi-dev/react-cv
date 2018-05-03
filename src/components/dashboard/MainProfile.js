@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStateMain from '../../store/dashboard/mainprofile/mapStateAction';
-import dispatchStateMain from '../../store/dashboard/mainprofile/dispatchStateAction';
+import mapStateMain from '../../store/cv/mainprofile/mapStateAction';
+import dispatchStateMain from '../../store/cv/mainprofile/dispatchStateAction';
 import Loading from '../general/Loading';
 
 const byPropKey = ( propertyName, value ) => () => ({

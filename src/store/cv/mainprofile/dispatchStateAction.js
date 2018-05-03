@@ -23,6 +23,18 @@ const dispatchStateToProps = dispatch => {
         dispatch({ type: 'FETCH_MAIN_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
+    // add main profile data
+    addMainProfile: () => {
+
+    },
+    
+    editMainProfile: () => {
+      dispatch({ type: 'EDIT_MAIN_PROFILE' })
+    },
+
+    cancelEditMainProfile: () => {
+      dispatch({ type: 'CANCEL_EDIT_MAIN_PROFILE' })
+    }
 
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStateTraining from '../../store/dashboard/training/mapStateAction';
-import dispatchStateTraining from '../../store/dashboard/training/dispatchStateAction';
+import mapStateTraining from '../../store/cv/training/mapStateAction';
+import dispatchStateTraining from '../../store/cv/training/dispatchStateAction';
 import Loading from '../general/Loading';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 

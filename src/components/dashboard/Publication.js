@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStatePublication from '../../store/dashboard/publication/mapStateAction';
-import dispatchStatePublication from '../../store/dashboard/publication/dispatchStateAction';
+import mapStatePublication from '../../store/cv/publication/mapStateAction';
+import dispatchStatePublication from '../../store/cv/publication/dispatchStateAction';
 import Loading from '../general/Loading';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
