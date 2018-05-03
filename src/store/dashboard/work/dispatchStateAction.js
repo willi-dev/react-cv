@@ -25,14 +25,21 @@ const dispatchStateToProps = dispatch => {
     addWork: (dataWork) => {
       firebaseConfig.database().ref('work').push(dataWork, function( error ){
         if( error ){
-          dispatch( { type: 'ADD_WORK_ERROR' } );
+          dispatch( { type: 'ADD_WORK_ERROR', payload: error } );
         }else{
           dispatch( { type: 'ADD_WORK_SUCCESS' } );
         }
       })
+    },
+    deleteWork: (idWork, itemWork) => {
+      firebaseConfig.database().ref('work').child(idWork).remove( function( error ){
+        if( error ){
+          dispatch({ type: 'DELETE_WORK_ERROR', payload: error })
+        }else{
+          dispatch({ type: 'DELETE_WORK_SUCCES' })
+        }
+      } );
     }
-    
-    // code here
 
   }
 }

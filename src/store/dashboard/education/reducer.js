@@ -37,6 +37,18 @@ const reducer = ( state = initialState, action ) => {
     case 'ADD_EDU_ERROR': {
       return {
         ...state,
+        error: action.payload
+      }
+    }
+    case 'DELETE_EDU_SUCCESS': {
+      return {
+        ...state,
+      }
+    }
+    case 'DELETE_EDU_ERROR': {
+      return {
+        ...state,
+        error: action.payload
       }
     }
     default: {

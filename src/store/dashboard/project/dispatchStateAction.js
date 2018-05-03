@@ -30,9 +30,16 @@ const dispatchStateToProps = dispatch => {
           dispatch( { type: 'ADD_PROJECT_SUCCESS' } );
         }
       })
+    },
+    deleteProject: (idProject, itemProject) => {
+      firebaseConfig.database().ref('project').child(idProject).remove( function(error){
+        if( error ){
+          dispatch( {type: 'DELETE_PROJECT_ERROR', payload: error } );
+        }else{
+          dispatch( { type: 'DELETE_PROJECT_SUCCESS' } );
+        }
+      })
     }
-    // code here
-
   }
 }
 

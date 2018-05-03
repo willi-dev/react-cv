@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import mapStateTraining from '../../store/dashboard/training/mapStateAction';
 import dispatchStateTraining from '../../store/dashboard/training/dispatchStateAction';
 import Loading from '../general/Loading';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -12,6 +13,9 @@ const INITIAL_STATE = {
   name: '',
   place: '',
   year: '',
+  modal: false,
+  selectedTraining: '',
+  selectedId: '',
 }
 
 class Training extends Component {
@@ -34,12 +38,25 @@ class Training extends Component {
     this.setState({ name: '', place: '', year: '' });
   }
 
+  toggle = (passData) => e => {
+    e.preventDefault();
+    const { type, name, id } = passData;
+    this.setState({
+      modal: !this.state.modal,
+      selectedTraining: name,
+      selectedId: id
+    });
+    if( type==='delete'){
+      this.props.deleteTraining(id, name);
+    }
+  }
+
   componentWillMount() {
     this.props.fetchTraining();
   }
   
   render(){
-    const { name, place, year } = this.state;
+    const { name, place, year, modal, selectedTraining, selectedId } = this.state;
     const isInvalid = name ==='' || place === '' || year === '';
     return (
       <div>
@@ -88,7 +105,7 @@ class Training extends Component {
            )
         }
 
-        <div className={!this.props.fetched && this.props.training.length > 0 ? 'element-hide': 'element-show'}>
+        <div className={this.props.fetched && this.props.training.length > 0 ? 'element-show': 'element-hide'}>
           <table className="table">
             <thead className="thead-dark">
               <tr>
@@ -109,12 +126,14 @@ class Training extends Component {
                   <td>{item.year}</td>
                   <td>
                     <div className="btn-group btn-group-sm" role="group" aria-label="Action">
-                      <button type="button" className="btn btn-secondary">
-                        <i className="material-icons">delete</i>
-                      </button>
+                      
                       <button type="button" className="btn btn-secondary">
                         <i className="material-icons">mode_edit</i>
                       </button>
+                      <button type="button" className="btn btn-secondary" onClick={this.toggle({type: 'open', name: item.name, id: item.key})}>
+                        <i className="material-icons">delete</i>
+                      </button>
+
                     </div>
                   </td>
                 </tr>
@@ -122,6 +141,16 @@ class Training extends Component {
               }
             </tbody>
           </table>
+          <Modal isOpen={modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={ this.toggle( {type:'close', name: '', id:''} ) }>Delete this training?</ModalHeader>
+            <ModalBody>
+              Training: {selectedTraining}
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={ this.toggle( {type:'delete', name: selectedTraining, id: selectedId } ) }>Delete</Button>{' '}
+              <Button color="secondary" onClick={ this.toggle( {type:'close', name: '', id: '' } ) }>Cancel</Button>
+            </ModalFooter>
+          </Modal>
         </div>
         <div className={this.props.fetched && this.props.training.length === 0 ? 'element-show': 'element-hide'}>
           <div className="alert alert-warning">

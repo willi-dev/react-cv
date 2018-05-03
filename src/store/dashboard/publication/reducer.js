@@ -39,10 +39,20 @@ const reducer = ( state = initialState, action ) => {
     case 'ADD_PUBLICATION_ERROR': {
       return {
         ...state,
+        error: action.payload
       }
     }
-
-
+    case 'DELETE_PUBLICATION_SUCCESS': {
+      return {
+        ...state
+      }
+    }
+    case 'DELETE_PUBLICATION_ERROR': {
+      return {
+        ...state,
+        error: action.payload,
+      }
+    }
     default: {
       return state;
     }

@@ -25,14 +25,21 @@ const dispatchStateToProps = dispatch => {
     addTraining: (dataTraining) => {
       firebaseConfig.database().ref('training').push( dataTraining, function(error){
         if(error){
-          dispatch({ type: 'ADD_TRAINING_ERROR' });
+          dispatch({ type: 'ADD_TRAINING_ERROR', payload: error });
         }else{
           dispatch({ type: 'ADD_TRAINING_SUCCESS' });
         }
       })
+    },
+    deleteTraining: (idTraining, itemTraining ) => {
+      firebaseConfig.database().ref('training').child(idTraining).remove( function( error ){
+        if( error ){
+          dispatch( { type: 'DELETE_TRAINING_ERROR', payload: error } );
+        }else{
+          dispatch( { type: 'DELETE_TRAINING_SUCCESS' });
+        }
+      })
     }
-    // code here
-
   }
 }
 

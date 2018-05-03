@@ -23,7 +23,6 @@ class Skill extends Component {
     super(props);
     this.state = {...INITIAL_STATE};
     this.addSkill = this.addSkill.bind(this);
-    this.toggle = this.toggle.bind(this);
   }
 
   addSkill(e){

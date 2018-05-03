@@ -30,8 +30,16 @@ const dispatchStateToProps = dispatch => {
           dispatch( { type: 'ADD_EDU_SUCCESS' } );
         }
       })
+    },
+    deleteEducation: ( idEdu, itemEdu ) => {
+      firebaseConfig.database().ref('education').child( idEdu ).remove( function( error ){
+        if( error ){
+          dispatch( { type: 'DELETE_EDU_ERROR', payload: error } );
+        }else{
+          dispatch( { type: 'DELETE_EDU_SUCCESS' } );
+        }
+      })
     }
-    // code here
 
   }
 }

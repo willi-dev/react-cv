@@ -31,9 +31,15 @@ const dispatchStateToProps = dispatch => {
         }
       });
     },
-
-    // code here
-
+    deletePublication: (idPublication, itemPublication) => {
+      firebaseConfig.database().ref('publication').child(idPublication).remove( function( error ){
+        if( error ){
+          dispatch( { type: 'DELETE_PUBLICATION_ERROR', payload: error });
+        }else{
+          dispatch( { type: 'DELETE_PUBLICATION_SUCCESS' } );
+        }
+      })
+    }
   }
 }
 

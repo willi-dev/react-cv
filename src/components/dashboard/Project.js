@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import mapStateProject from '../../store/dashboard/project/mapStateAction';
 import dispatchStateProject from '../../store/dashboard/project/dispatchStateAction';
 import Loading from '../general/Loading';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -13,6 +14,9 @@ const INITIAL_STATE = {
   project_company: '',
   project_period: '',
   project_description: '',
+  modal: false, 
+  selectedProject: '',
+  selectedId: '',
 }
 
 class Project extends Component {
@@ -41,12 +45,25 @@ class Project extends Component {
     });
   }
 
+  toggle = ( passData ) => e => {
+    e.preventDefault();
+    const { type, name, id } = passData;
+    this.setState({
+      modal: !this.state.modal,
+      selectedProject: name,
+      selectedId: id
+    });
+    if( type==='delete' ){
+      this.props.deleteProject( id, name );
+    }
+  }
+
   componentWillMount() {
     this.props.fetchProject();
   }
   
   render() {
-    const { project_name, project_company, project_period, project_description } = this.state;
+    const { project_name, project_company, project_period, project_description, modal, selectedProject, selectedId } = this.state;
     const isInvalid = project_name === '' || project_company ==='' || project_period === '' || project_description === '';
     return (
       <div>
@@ -127,10 +144,10 @@ class Project extends Component {
                   <td>
                     <div className="btn-group btn-group-sm" role="group" aria-label="Action">
                       <button type="button" className="btn btn-secondary">
-                        <i className="material-icons">delete</i>
-                      </button>
-                      <button type="button" className="btn btn-secondary">
                         <i className="material-icons">mode_edit</i>
+                      </button>
+                      <button type="button" className="btn btn-secondary" onClick={this.toggle({ type: 'open', name: item.name, id: item.key})}>
+                        <i className="material-icons">delete</i>
                       </button>
                     </div>
                   </td>
@@ -139,6 +156,16 @@ class Project extends Component {
               }
             </tbody>
           </table>
+          <Modal isOpen={modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={ this.toggle( {type:'close', name: '', id:''} ) }>Delete this project?</ModalHeader>
+            <ModalBody>
+              Project: {selectedProject}
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={ this.toggle( {type:'delete', name: selectedProject, id: selectedId } ) }>Delete</Button>{' '}
+              <Button color="secondary" onClick={ this.toggle( {type:'close', name: '', id: '' } ) }>Cancel</Button>
+            </ModalFooter>
+          </Modal>
         </div>
         <div className={this.props.fetched && this.props.project.length === 0 ? 'element-show': 'element-hide'}>
           <div className="alert alert-warning">

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import mapStatePublication from '../../store/dashboard/publication/mapStateAction';
 import dispatchStatePublication from '../../store/dashboard/publication/dispatchStateAction';
 import Loading from '../general/Loading';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
@@ -12,6 +13,9 @@ const INITIAL_STATE = {
   publication_name: '',
   publication_description: '',
   publication_link: '',
+  modal: false, 
+  selectedPublication: '',
+  selectedId: '',
 }
 
 class Publication extends Component {
@@ -37,13 +41,26 @@ class Publication extends Component {
       publication_link: '',
     })
   }
+  
+  toggle = ( passData ) => e => {
+    e.preventDefault();
+    const { type, publicationName, publicationId } = passData;
+    this.setState({
+      modal: !this.state.modal,
+      selectedPublication: publicationName,
+      selectedId: publicationId
+    });
+    if( type==='delete'){
+      this.props.deletePublication( publicationId, publicationName );
+    }
+  }
 
   componentWillMount() {
     this.props.fetchPublication();
   }
   
   render() {
-    const { publication_name, publication_description, publication_link } = this.state;
+    const { publication_name, publication_description, publication_link, modal, selectedPublication, selectedId } = this.state;
     const isInvalid = publication_name ==='' || publication_description ==='' || publication_link ==='';
 
     return (
@@ -95,7 +112,7 @@ class Publication extends Component {
            )
         }
 
-        <div className={!this.props.fetched && this.props.publication.length > 0 ? 'element-hide': 'element-show'}>
+        <div className={this.props.fetched && this.props.publication.length > 0 ? 'element-show': 'element-hide'}>
           <table className="table">
             <thead className="thead-dark">
               <tr>
@@ -116,12 +133,14 @@ class Publication extends Component {
                   <td>{item.link}</td>
                   <td>
                     <div className="btn-group btn-group-sm" role="group" aria-label="Action">
-                      <button type="button" className="btn btn-secondary">
-                        <i className="material-icons">delete</i>
-                      </button>
+                     
                       <button type="button" className="btn btn-secondary">
                         <i className="material-icons">mode_edit</i>
                       </button>
+                       <button type="button" className="btn btn-secondary" onClick={this.toggle( {type: 'open', publicationName: item.publication, publicationId: item.key } )}>
+                        <i className="material-icons">delete</i>
+                      </button>
+
                     </div>
                   </td>
                 </tr>
@@ -129,6 +148,16 @@ class Publication extends Component {
               }
             </tbody>
           </table>
+          <Modal isOpen={modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={ this.toggle( {type:'close', publicationName: '', publicationId:''} ) }>Delete this Publication?</ModalHeader>
+            <ModalBody>
+              Publication: {selectedPublication}
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onClick={ this.toggle( {type:'delete', publicationName: selectedPublication, publicationId: selectedId } ) }>Delete</Button>{' '}
+              <Button color="secondary" onClick={ this.toggle( {type:'close', publicationName: '', publicationId: '' } ) }>Cancel</Button>
+            </ModalFooter>
+          </Modal>
         </div>
         <div className={this.props.fetched && this.props.publication.length === 0 ? 'element-show': 'element-hide'}>
           <div className="alert alert-warning">

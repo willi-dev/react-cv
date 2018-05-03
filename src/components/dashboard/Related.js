@@ -22,7 +22,6 @@ class Related extends Component {
     super(props);
     this.state = {...INITIAL_STATE};
     this.addRelatedTools = this.addRelatedTools.bind(this);
-    this.toggle = this.toggle.bind(this);
   }
   
   addRelatedTools(e){

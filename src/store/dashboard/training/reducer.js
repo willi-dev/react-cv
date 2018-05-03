@@ -37,6 +37,18 @@ const reducer = ( state = initialState, action ) => {
     case 'ADD_TRAINING_ERROR': {
       return {
         ...state,
+        error: action.payload
+      }
+    }
+    case 'DELETE_TRAINING_SUCCESS' : {
+      return {
+        ...state
+      }
+    }
+    case 'DELETE_TRAINING_ERROR': {
+      return {
+        ...state,
+        error: action.payload
       }
     }
     default: {
