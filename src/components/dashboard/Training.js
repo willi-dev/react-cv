@@ -130,7 +130,7 @@ class Training extends Component {
                       <button type="button" className="btn btn-secondary">
                         <i className="material-icons">mode_edit</i>
                       </button>
-                      <button type="button" className="btn btn-secondary" onClick={this.toggle({type: 'open', name: item.name, id: item.key})}>
+                      <button type="button" className="btn btn-warning" onClick={this.toggle({type: 'open', name: item.name, id: item.key})}>
                         <i className="material-icons">delete</i>
                       </button>
 

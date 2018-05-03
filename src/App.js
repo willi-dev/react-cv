@@ -1,64 +1,35 @@
 import React, { Component } from 'react';
-import {firebaseConfig} from './services/firebase';
-import _ from 'lodash';
+import './App.css';
 
-const INITIAL_STATE = {
-  education: [],
-  mainprofile: [],
-  personaldetail: [],
-  publication: [],
-  related: [],
-  skill: [],
-  training: [],
-  work: [],
-}
+import MainProfile from './components/cv/MainProfile';
+import PersonalDetail from './components/cv/PersonalDetail';
+import Education from './components/cv/Education';
+import Training from './components/cv/Training';
+import Skill from './components/cv/Skill';
+import Related from './components/cv/Related';
+import Work from './components/cv/Work';
+import Project from './components/cv/Project';
+import Publication from './components/cv/Publication';
 
 class App extends Component {
   
-  constructor(props){
-    super(props);
-    this.state = {...INITIAL_STATE};
-  }
-
-  componentWillMount(){
-    //loop state, get data from firebase based on key of state
-    for( var key in this.state ){
-      if(this.state.hasOwnProperty(key)){
-        this.getDataRef(key);
-      }
-    }
-    
-  }
-
-  getDataRef( dataKey ){
-    let dataRef = firebaseConfig.database().ref( dataKey ).orderByKey();
-    dataRef.on('value', snapshot => {
-      this.setState( { [dataKey]: this.getData( dataKey, snapshot.val() ) });
-    });
-  }
-
-  getData( stateKey, values ){
-    
-    let val = values;
-    let dataVal = _(val)
-                    .keys()
-                    .map( dataKey => {
-                      let cloned = _.clone( val[dataKey] );
-                      cloned.key = dataKey;
-                      return cloned;
-                    })
-                    .value();
-    return dataVal;
-  }
-
   render() {
     return (
-      <div className="App">
+      <div className="App container">
+         
+         <MainProfile />
+         <div> ---------------------------- </div>
+         <PersonalDetail />
+         <Education />
+         <Training />
+         <Skill />
+         <Related />
+         <Work />
+         <Project />
+         <Publication />
+
       </div>
     );
-  }
-
-  componentDidUpdate(){
   }
 
 }

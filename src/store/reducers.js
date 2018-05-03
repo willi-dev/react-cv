@@ -12,6 +12,16 @@ import trainingReducer from './dashboard/training/reducer';
 import workReducer from './dashboard/work/reducer';
 import projectReducer from './dashboard/project/reducer';
 
+// import cvEduReducer from './cv/education/reducer';
+// import cvMainReducer from './cv/mainprofile/reducer';
+// import cvPersonalReducer from './cv/personaldetail/reducer';
+// import cvPublicationReducer from './cv/publication/reducer';
+// import cvRelatedReducer from './cv/related/reducer';
+// import cvSkillReducer from './cv/skill/reducer';
+// import cvTrainingReducer from './cv/training/reducer';
+// import cvWorkReducer from './cv/work/reducer';
+// import cvProjectReducer from './cv/project/reducer';
+
 export default combineReducers({
 	auth: authReducer,
   edu: eduReducer,
@@ -23,4 +33,5 @@ export default combineReducers({
   skill: skillReducer,
   training: trainingReducer,
   work: workReducer,
+  
 });
