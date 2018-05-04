@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import mapStateMain from '../../store/cv/mainprofile/mapStateAction';
 import dispatchStateMain from '../../store/cv/mainprofile/dispatchStateAction';
 import Loading from '../general/Loading';
+import './Cv.css';
 
 class MainProfile extends Component {
   
@@ -12,7 +13,7 @@ class MainProfile extends Component {
 
   render(){
     return (
-      <div style={{fontFamily: 'courier new'}}>
+      <div className="container-component-outer">
         {
           (!this.props.fetched) && (
             <Loading />
@@ -21,13 +22,13 @@ class MainProfile extends Component {
         <div className={this.props.fetched && this.props.main.length > 0 ? 'element-show': 'element-hide'} >
           {
             this.props.main.map((item, index)=>(
-              <div id={index} style={{fontSize: 12+'px'}}>
-                <p style={{margin: 0}}>name: {item.nameProfile}</p>
-                <p style={{margin: 0}}>job title: {item.jobTitle}</p>
-                <p style={{margin: 0}}>phone: {item.phone}</p>
-                <p style={{margin: 0}}>address: {item.address}</p>
-                <p style={{margin: 0}}>linkedin: {item.linkedin}</p>
-                <p style={{margin: 0}}>github: {item.github}</p>
+              <div key={index} className="container-component-inner">
+                <p>Name: {item.nameProfile}</p>
+                <p >Job title: {item.jobTitle}</p>
+                <p>Phone: {item.phone}</p>
+                <p>Address: {item.address}</p>
+                <p>Linkedin: {item.linkedin}</p>
+                <p>Github: {item.github}</p>
               </div>
             ))
           }

@@ -18,7 +18,6 @@ class App extends Component {
       <div className="App container">
          
          <MainProfile />
-         <div> ---------------------------- </div>
          <PersonalDetail />
          <Education />
          <Training />
