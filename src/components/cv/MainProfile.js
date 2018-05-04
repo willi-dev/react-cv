@@ -14,7 +14,8 @@ class MainProfile extends Component {
   render(){
     return (
       <div className="container-component-outer">
-        <h6>Profile</h6>
+        <h4>Willi</h4>
+        <h6>Frontend Developer</h6>
         {
           (!this.props.fetched) && (
             <Loading />
@@ -24,12 +25,13 @@ class MainProfile extends Component {
           {
             this.props.main.map((item, index)=>(
               <div key={index} className="container-component-inner">
-                <p>Name: {item.nameProfile}</p>
+                
                 <p >Job title: {item.jobTitle}</p>
                 <p>Phone: {item.phone}</p>
                 <p>Address: {item.address}</p>
-                <p>Linkedin: {item.linkedin}</p>
-                <p>Github: {item.github}</p>
+                <p>Linkedin: <a href={item.linkedin} target="_blank">{item.linkedin}</a></p>
+                <p>Github: <a href={item.github} target="_blank">{item.github}</a></p>
+                <p>Blog: <a href={item.blog} target="_blank">{item.blog}</a></p>
               </div>
             ))
           }

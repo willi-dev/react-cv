@@ -11,6 +11,7 @@ class Training extends Component {
   }
 
   render(){
+    let dataReverse = this.props.training.reverse();
     return (
       <div className="container-component-outer">
         <h6>Training</h6>
@@ -20,15 +21,18 @@ class Training extends Component {
            )
         }
         <div className={this.props.fetched && this.props.training.length > 0 ? 'element-show': 'element-hide'} >
+          <ol>
           {
-            this.props.training.map((item, index)=>(
-              <div key={index} className="container-component-inner">
-                <p>{item.name}</p>
-                <p>{item.place}</p>
-                <p>{item.year}</p>
-              </div>
+            dataReverse.map((item, index)=>(
+              <li key={index}>
+                <div className="container-component-inner">
+                  <p className="black-text bold-text">{item.name} ({item.year})</p>
+                  <p>{item.place}</p>
+                </div>
+              </li>
             ))
           }
+          </ol>
         </div>
       </div>
     );
