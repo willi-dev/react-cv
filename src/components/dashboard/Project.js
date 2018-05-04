@@ -62,6 +62,7 @@ class Project extends Component {
   render() {
     const { project_name, project_company, project_period, project_description, modal, selectedProject, selectedId } = this.state;
     const isInvalid = project_name === '' || project_company ==='' || project_period === '' || project_description === '';
+    let dataReverse = this.props.project.reverse();
     return (
       <div>
         <h1 className="display-4 dashboard-title">Project</h1>
@@ -131,7 +132,7 @@ class Project extends Component {
             </thead>
             <tbody>
               {
-              this.props.project.map((item, index) => (
+              dataReverse.map((item, index) => (
                 <tr key={index}>
                   <td>{index+1}</td>
                   <td>{item.name}</td>

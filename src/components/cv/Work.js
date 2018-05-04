@@ -11,6 +11,7 @@ class Work extends Component {
   }
 
   render(){
+    let dataReverse = this.props.work.reverse();
     return (
       <div className="container-component-outer">
         <h6>Work Experience</h6>
@@ -22,10 +23,11 @@ class Work extends Component {
         <div className={this.props.fetched && this.props.work.length > 0 ? 'element-show': 'element-hide'} >
           <ol>
           {
-            this.props.work.map((item, index) => (
+            
+            dataReverse.map((item, index) => (
               <li key={index} >
               <div className="container-component-inner">
-                <p>{item.position}</p>
+                <p className="black-text bold-text">{item.position}</p>
                 <p>{item.company}</p>
                 <p>{item.periode}</p>
                 <p>{item.description}</p>

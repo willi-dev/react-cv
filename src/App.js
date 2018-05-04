@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div className="App container">
         <div className="row"> 
-          <div className="col-md-8">
+          <div className="col-md-6 offset-md-3">
             <MainProfile />
             <PersonalDetail />
             <Education />

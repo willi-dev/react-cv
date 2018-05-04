@@ -11,6 +11,7 @@ class Project extends Component {
   }
 
   render(){
+    let dataReverse = this.props.project.reverse();
     return (
       <div className="container-component-outer">
         <h6>Project</h6>
@@ -22,12 +23,10 @@ class Project extends Component {
         <div className={this.props.fetched && this.props.project.length > 0 ? 'element-show': 'element-hide'} >
           <ol>
           {
-            this.props.project.map((item, index) => (
+            dataReverse.map((item, index) => (
               <li key={index}>
               <div className="container-component-inner">
-                <p>{item.name}</p>
-                <p>{item.company}</p>
-                <p>{item.period}</p>
+                <p className="black-text bold-text">{item.name} {item.period} ({item.company}) </p>
                 <p>{item.description}</p>
               </div>
               </li>

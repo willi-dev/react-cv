@@ -11,6 +11,7 @@ class Education extends Component {
   }
 
   render(){
+    let dataReverse = this.props.edu.reverse();
     return (
       <div className="container-component-outer">
         <h6>Education</h6>
@@ -20,15 +21,18 @@ class Education extends Component {
            )
         }
         <div className={this.props.fetched && this.props.edu.length > 0 ? 'element-show': 'element-hide'} >
+          <ol>
           {
-            this.props.edu.map((item, index)=>(
-              <div key={index} className="container-component-inner">
-                <p>{item.school}</p>
-                <p>{item.period}</p>
-                <p>{item.description}</p>
-              </div>
+            dataReverse.map((item, index)=>(
+              <li key={index}>
+                <div className="container-component-inner">
+                  <p className="black-text bold-text">{item.school} ({item.period})</p>
+                  <p>{item.description}</p>
+                </div>
+              </li>
             ))
           }
+          </ol>
         </div>
       </div>
     );
