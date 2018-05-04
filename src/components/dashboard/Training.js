@@ -4,10 +4,7 @@ import mapStateTraining from '../../store/cv/training/mapStateAction';
 import dispatchStateTraining from '../../store/cv/training/dispatchStateAction';
 import Loading from '../general/Loading';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-const byPropKey = ( propertyName, value ) => () => ({
-  [propertyName]: value
-})
+import { byPropKey } from '../../utils';
 
 const INITIAL_STATE = {
   name: '',

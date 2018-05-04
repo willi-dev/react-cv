@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import mapStatePersonal from '../../store/cv/personaldetail/mapStateAction';
 import dispatchStatePersonal from '../../store/cv/personaldetail/dispatchStateAction';
 import Loading from '../general/Loading';
-
-const byPropKey = ( propertyName, value ) => () => ({
-  [propertyName]: value
-})
+import { byPropKey } from '../../utils';
 
 const INITIAL_STATE = {
   place_birth: '',

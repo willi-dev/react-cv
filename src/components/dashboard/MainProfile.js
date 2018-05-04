@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import mapStateMain from '../../store/cv/mainprofile/mapStateAction';
 import dispatchStateMain from '../../store/cv/mainprofile/dispatchStateAction';
 import Loading from '../general/Loading';
-
-const byPropKey = ( propertyName, value ) => () => ({
-  [propertyName]: value
-})
+import { byPropKey } from '../../utils';
 
 const INITIAL_STATE = {
   name: '',

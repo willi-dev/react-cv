@@ -14,6 +14,7 @@ class PersonalDetail extends Component {
   render(){
     return (
       <div className="container-component-outer">
+        <h6>Personal Detail</h6>
         {
           (!this.props.fetched) && (
             <Loading />

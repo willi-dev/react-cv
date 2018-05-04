@@ -76,7 +76,7 @@ body{
 .loading-container{
   position: relative;
   text-align: center;
-  padding: 90px 0;
+  padding: 50px 0;
   -webkit-animation: rotation 2s infinite linear;
 }
 

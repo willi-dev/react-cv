@@ -13,7 +13,7 @@ class Publication extends Component {
   render(){
     return (
       <div className="container-component-outer last">
-
+        <h6>Publication</h6>
         {
           (!this.props.fetched) && (
             <Loading />

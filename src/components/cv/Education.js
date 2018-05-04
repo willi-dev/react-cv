@@ -13,6 +13,7 @@ class Education extends Component {
   render(){
     return (
       <div className="container-component-outer">
+        <h6>Education</h6>
         {
           (!this.props.fetched) && (
             <Loading />

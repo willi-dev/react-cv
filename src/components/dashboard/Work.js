@@ -4,10 +4,7 @@ import mapStateWork from '../../store/cv/work/mapStateAction';
 import dispatchStateWork from '../../store/cv/work/dispatchStateAction';
 import Loading from '../general/Loading';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-const byPropKey = ( propertyName, value ) => () => ({
-  [propertyName]: value
-})
+import { byPropKey } from '../../utils';
 
 const INITIAL_STATE = {
   position: '',

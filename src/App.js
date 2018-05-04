@@ -16,17 +16,19 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-         
-         <MainProfile />
-         <PersonalDetail />
-         <Education />
-         <Training />
-         <Skill />
-         <Related />
-         <Work />
-         <Project />
-         <Publication />
-
+        <div className="row"> 
+          <div className="col-md-8">
+            <MainProfile />
+            <PersonalDetail />
+            <Education />
+            <Training />
+            <Skill />
+            <Related />
+            <Work />
+            <Project />
+            <Publication />
+          </div>
+        </div>
       </div>
     );
   }

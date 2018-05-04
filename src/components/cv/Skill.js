@@ -13,6 +13,7 @@ class Skill extends Component {
   render(){
     return (
       <div className="container-component-outer">
+        <h6>Skill</h6>
         {
           (!this.props.fetched) && (
             <Loading />

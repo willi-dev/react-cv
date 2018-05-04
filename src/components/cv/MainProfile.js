@@ -14,6 +14,7 @@ class MainProfile extends Component {
   render(){
     return (
       <div className="container-component-outer">
+        <h6>Profile</h6>
         {
           (!this.props.fetched) && (
             <Loading />

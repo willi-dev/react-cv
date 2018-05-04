@@ -4,10 +4,7 @@ import mapStatePublication from '../../store/cv/publication/mapStateAction';
 import dispatchStatePublication from '../../store/cv/publication/dispatchStateAction';
 import Loading from '../general/Loading';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-const byPropKey = ( propertyName, value ) => () => ({
-  [propertyName]: value
-})
+import { byPropKey } from '../../utils';
 
 const INITIAL_STATE = {
   publication_name: '',

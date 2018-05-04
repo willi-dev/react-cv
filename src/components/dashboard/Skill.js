@@ -5,10 +5,7 @@ import dispatchStateSkill from '../../store/cv/skill/dispatchStateAction';
 import Loading from '../general/Loading';
 import Related from './Related';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-const byPropKey = ( propertyName, value ) => () => ({
-  [propertyName]: value
-})
+import { byPropKey } from '../../utils';
 
 const INITIAL_STATE = {
   skill_name: '',

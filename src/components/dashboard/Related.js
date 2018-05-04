@@ -4,10 +4,7 @@ import mapStateRelated from '../../store/cv/related/mapStateAction';
 import dispatchStateRelated from '../../store/cv/related/dispatchStateAction';
 import Loading from '../general/Loading';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-const byPropKey = ( propertyName, value ) => () => ({
-  [propertyName]: value
-})
+import { byPropKey } from '../../utils';
 
 const INITIAL_STATE = {
   relatedtools_name: '',

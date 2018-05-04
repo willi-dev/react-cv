@@ -4,10 +4,7 @@ import mapStateProject from '../../store/cv/project/mapStateAction';
 import dispatchStateProject from '../../store/cv/project/dispatchStateAction';
 import Loading from '../general/Loading';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-const byPropKey = ( propertyName, value ) => () => ({
-  [propertyName]: value
-})
+import { byPropKey } from '../../utils';
 
 const INITIAL_STATE = {
   project_name: '',
