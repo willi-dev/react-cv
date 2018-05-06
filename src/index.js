@@ -25,7 +25,7 @@ const DashboardRoute = ( { component: Component, ...rest }) =>(
 
 ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={App} />
           <Route path="/login" component={Login} />

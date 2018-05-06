@@ -1,7 +1,7 @@
 {
   "name": "react-cv",
   "version": "0.1.0",
-  "homepage": "http://willi-dev.github.io/react-cv/",
+  "homepage": "http://willi-dev.github.io/react-cv",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.0",
