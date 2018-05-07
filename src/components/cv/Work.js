@@ -27,9 +27,8 @@ class Work extends Component {
             dataReverse.map((item, index) => (
               <li key={index} >
               <div className="container-component-inner">
-                <p className="black-text bold-text">{item.position}</p>
+                <p className="black-text bold-text">{item.position} {item.period}</p>
                 <p>{item.company}</p>
-                <p>{item.periode}</p>
                 <p>{item.description}</p>
               </div>
               </li>
