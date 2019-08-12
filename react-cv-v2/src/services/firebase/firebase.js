@@ -1,13 +1,13 @@
 import * as firebase from 'firebase';
 
 const config = {
-  apiKey: "AIzaSyDdPKeAue0qqpDMj7sbqGY9IgRolAe_FkI",
-  authDomain: "willicv-8d052.firebaseapp.com",
-  databaseURL: "https://willicv-8d052.firebaseio.com",
-  projectId: "willicv-8d052",
-  storageBucket: "willicv-8d052.appspot.com",
-  messagingSenderId: "323654850234",
-  appId: "1:323654850234:web:8afcbced01a91aa1"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTHDOMAIN,
+  databaseURL: process.env.REACT_APP_DB_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_ID,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 const firebaseConfig = firebase.initializeApp(config);
