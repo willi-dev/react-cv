@@ -4,7 +4,7 @@
   "homepage": "http://willi-dev.github.io/react-cv",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.1.0",
+    "bootstrap": "^4.3.1",
     "firebase": "^6.4.2",
     "react": "^16.8.0",
     "react-dom": "^16.3.1",
