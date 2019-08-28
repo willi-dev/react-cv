@@ -1,16 +1,16 @@
-import {firebaseConfig} from '../../../services/firebase';
+import { db } from '../../../services/firebase';
 import { getData } from '../../../utils';
 
 const dispatchStateToProps = dispatch => {
   return {
     fetchSkill: () => {
-      let skillData = firebaseConfig.database().ref('/skill');
+      let skillData = db.ref('/skill');
       skillData.on('value', snapshot =>{
         dispatch({ type: 'FETCH_SKILL_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
     addSkill: (dataSkill) => {
-      firebaseConfig.database().ref('skill').push(dataSkill, function(error){
+      db.ref('skill').push(dataSkill, function(error){
         if( error ){
           dispatch( { type: 'ADD_SKILL_ERROR', payload: error } );
         }else{
@@ -19,7 +19,7 @@ const dispatchStateToProps = dispatch => {
       })
     }, 
     deleteSkill: (idSkill, itemSkill) => {
-      firebaseConfig.database().ref('skill').child(idSkill).remove( function( error ){
+      db.ref('skill').child(idSkill).remove( function( error ){
         if( error ){
           dispatch( { type: 'DELETE_SKILL_ERROR', payload: error });
         }else{

@@ -10,7 +10,7 @@ import Login from './components/login/Login';
 import Logout from './components/login/Logout';
 import Dashboard from './components/dashboard/Dashboard';
 import registerServiceWorker from './registerServiceWorker';
-import {auth } from './services/firebase';
+import { auth } from './services/firebase';
 
 /* 
  * Custom DashboardRoute

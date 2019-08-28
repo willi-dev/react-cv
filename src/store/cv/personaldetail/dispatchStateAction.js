@@ -1,10 +1,10 @@
-import {firebaseConfig} from '../../../services/firebase';
+import { db } from '../../../services/firebase';
 import { getData } from '../../../utils';
 
 const dispatchStateToProps = dispatch => {
   return {
     fetchPersonal: () => {
-      let personalData = firebaseConfig.database().ref('/personaldetail');
+      let personalData = db.ref('/personaldetail');
       personalData.on('value', snapshot =>{
         dispatch({ type: 'FETCH_PERSONAL_FULFILLED', payload: getData( snapshot.val() )});
       });

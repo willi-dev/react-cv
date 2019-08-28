@@ -1,16 +1,16 @@
-import {firebaseConfig} from '../../../services/firebase';
+import { db } from '../../../services/firebase';
 import { getData } from '../../../utils';
 
 const dispatchStateToProps = dispatch => {
   return {
     fetchPublication: () => {
-      let publicationData = firebaseConfig.database().ref('/publication');
+      let publicationData = db.ref('/publication');
       publicationData.on('value', snapshot =>{
         dispatch({ type: 'FETCH_PUBLICATION_FULFILLED', payload: getData( snapshot.val() )});
       });
     },
     addPublication: ( dataPublication ) => {
-      firebaseConfig.database().ref('publication').push(dataPublication, function(error){
+      db.ref('publication').push(dataPublication, function(error){
         if(error){
           dispatch({ type: 'ADD_PUBLICATON_ERROR' });
         }else{
@@ -19,7 +19,7 @@ const dispatchStateToProps = dispatch => {
       });
     },
     deletePublication: (idPublication, itemPublication) => {
-      firebaseConfig.database().ref('publication').child(idPublication).remove( function( error ){
+      db.ref('publication').child(idPublication).remove( function( error ){
         if( error ){
           dispatch( { type: 'DELETE_PUBLICATION_ERROR', payload: error });
         }else{
