@@ -69,9 +69,8 @@ class MainProfile extends Component {
   }
 
   render() {
-    const { name, job_title, phone, address, email, linkedin, github, blog, editForm, fillForm } = this.state;
+    const { name, job_title, phone, address, email, linkedin, github, blog, editForm } = this.state;
     const isInvalid = name === '' || job_title === '' || phone === '' || address === '' || email === '';
-    console.log( fillForm )
     return (
       <div>
           <h1 className="display-4 dashboard-title">Main Profile</h1>

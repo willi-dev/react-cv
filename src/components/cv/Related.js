@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStateRelated from '../../store/cv/related/mapStateAction';
 import dispatchStateRelated from '../../store/cv/related/dispatchStateAction';
 import Loading from '../general/Loading';
 
-class Related extends Component {
-  
-  componentWillMount() {
-    this.props.fetchRelated();
-  }
+const Related = ({ related, fetched, fetchRelated }) => {
+  /**
+   * useEffect
+   */
+  useEffect(() => {
+    fetchRelated()
+  }, [])
 
-  render(){
-    return (
-      <div className="container-component-outer">
+  return (
+    <div className="container-component-outer">
+      {
+        (!fetched) && (
+          <Loading />
+          )
+      }
+      <div className={fetched && related.length > 0 ? 'element-show': 'element-hide'} >
         {
-          (!this.props.fetched) && (
-            <Loading />
-           )
+          related.map((item, index) => (
+            <span key={index}>{item.relatedtools} &nbsp;</span>
+          ))
         }
-        <div className={this.props.fetched && this.props.related.length > 0 ? 'element-show': 'element-hide'} >
-          {
-            this.props.related.map((item, index) => (
-              <span key={index}>{item.relatedtools} &nbsp;</span>
-            ))
-          }
-        </div>
       </div>
-    );
-  }
-
+    </div>
+  )
 }
 
 export default connect( mapStateRelated, dispatchStateRelated )(Related);
