@@ -3,9 +3,14 @@ import { connect } from 'react-redux';
 import mapStatePublication from '../../store/cv/publication/mapStateAction';
 import dispatchStatePublication from '../../store/cv/publication/dispatchStateAction';
 import Loading from '../general/Loading';
+import Title from '../general/Title';
 
+/**
+ * Publication
+ * publication component
+ * @author willi <https://github.com/willi-dev>
+ */
 const Publication = ({ publication, fetched, fetchPublication }) => {
-
   /**
    * useEffect
    */
@@ -15,7 +20,7 @@ const Publication = ({ publication, fetched, fetchPublication }) => {
 
   return (
     <div className="container-component-outer last">
-      <h6>Publication</h6>
+      <Title text="Publication"/>
       {
         (!fetched) && (
           <Loading />

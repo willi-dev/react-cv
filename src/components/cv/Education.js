@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import mapStateEdu from '../../store/cv/education/mapStateAction';
 import dispatchStateEdu from '../../store/cv/education/dispatchStateAction';
 import Loading from '../general/Loading';
+import Title from '../general/Title';
 import './Cv.css';
 
+/**
+ * Education
+ * education component
+ * @author willi <https://github.com/willi-dev>
+ */
 const Education = ({ edu, fetched, fetchEducation }) => {
-  let dataReverse = edu.reverse()
-
+  const dataReverse = edu.reverse()
   /**
    * useEffect
    */
@@ -17,7 +22,7 @@ const Education = ({ edu, fetched, fetchEducation }) => {
 
   return (
     <div className="container-component-outer">
-      <h6>Education</h6>
+      <Title text="Education"/>
       {
         (!fetched) && (
           <Loading />

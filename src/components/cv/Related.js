@@ -4,6 +4,11 @@ import mapStateRelated from '../../store/cv/related/mapStateAction';
 import dispatchStateRelated from '../../store/cv/related/dispatchStateAction';
 import Loading from '../general/Loading';
 
+/**
+ * Related
+ * related component
+ * @author willi <https://github.com/willi-dev>
+ */
 const Related = ({ related, fetched, fetchRelated }) => {
   /**
    * useEffect

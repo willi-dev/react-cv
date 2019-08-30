@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 import mapStateProject from '../../store/cv/project/mapStateAction';
 import dispatchStateProject from '../../store/cv/project/dispatchStateAction';
 import Loading from '../general/Loading';
+import Title from '../general/Title';
+import Subtitle from '../general/Subtitle';
 
+/**
+ * Project
+ * project component
+ * @author willi <https://github.com/willi-dev>
+ */
 const Project = ({ project, fetched, fetchProject }) => {
-  let dataReverse = project.reverse()
+  const dataReverse = project.reverse()
   
   /**
    * useEffect
@@ -16,7 +23,7 @@ const Project = ({ project, fetched, fetchProject }) => {
 
   return (
     <div className="container-component-outer">
-      <h6>Project</h6>
+      <Title text="Project"/>
       {
         (!fetched) && (
           <Loading />
@@ -28,7 +35,9 @@ const Project = ({ project, fetched, fetchProject }) => {
           dataReverse.map((item, index) => (
             <li key={index}>
             <div className="container-component-inner">
-              <p className="black-text bold-text">{item.name} {item.period} ({item.company}) </p>
+              <Subtitle>
+                {item.name} {item.period} ({item.company}) 
+              </Subtitle>
               <p>{item.description}</p>
             </div>
             </li>

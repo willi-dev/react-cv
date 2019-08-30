@@ -3,9 +3,18 @@ import { connect } from 'react-redux';
 import mapStateMain from '../../store/cv/mainprofile/mapStateAction';
 import dispatchStateMain from '../../store/cv/mainprofile/dispatchStateAction';
 import Loading from '../general/Loading';
+import Title from '../general/Title'
 import './Cv.css';
 
+/**
+ * MainProfile
+ * main profile component
+ * @author willi <https://github.com/willi-dev>
+ */
 const MainProfile = ({ main, fetched, fetchMainProfile }) => {
+  /**
+   * useEffect
+   */
   useEffect(() => {
     fetchMainProfile()
   }, [])
@@ -13,7 +22,7 @@ const MainProfile = ({ main, fetched, fetchMainProfile }) => {
   return (
     <div className="container-component-outer">
       <h4>Willi</h4>
-      <h6>Frontend Developer</h6>
+      <Title text="Frontend Engineer"/>
       {
         (!fetched) && (
           <Loading />

@@ -20,12 +20,12 @@ class App extends Component {
           <div className="col-md-6 offset-md-3">
             <MainProfile />
             <PersonalDetail />
-            <Education />
-            <Training />
+            <Work />
             <Skill />
             <Related />
-            <Work />
             <Project />
+            <Education />
+            <Training />
             <Publication />
           </div>
         </div>

@@ -3,17 +3,25 @@ import { connect } from 'react-redux';
 import mapStatePersonal from '../../store/cv/personaldetail/mapStateAction';
 import dispatchStatePersonal from '../../store/cv/personaldetail/dispatchStateAction';
 import Loading from '../general/Loading';
+import Title from '../general/Title';
 import './Cv.css';
 
+/**
+ * PersonalDetail
+ * personal detail
+ * @author willi <https://github.com/willi-dev>
+ */
 const PersonalDetail = ({ fetched, personal, fetchPersonal }) => {
-
+  /**
+   * useEffect
+   */
   useEffect(() => {
     fetchPersonal()
   }, [])
 
   return (
     <div className="container-component-outer">
-      <h6>Personal Detail</h6>
+      <Title text="Personal Detail"/>
       {
         (!fetched) && (
           <Loading />
