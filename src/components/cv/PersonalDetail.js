@@ -3,17 +3,26 @@ import { connect } from 'react-redux';
 import mapStatePersonal from '../../store/cv/personaldetail/mapStateAction';
 import dispatchStatePersonal from '../../store/cv/personaldetail/dispatchStateAction';
 import Loading from '../general/Loading';
+import Title from '../general/Title';
+import Text from '../general/Text';
 import './Cv.css';
 
+/**
+ * PersonalDetail
+ * personal detail
+ * @author willi <https://github.com/willi-dev>
+ */
 const PersonalDetail = ({ fetched, personal, fetchPersonal }) => {
-
+  /**
+   * useEffect
+   */
   useEffect(() => {
     fetchPersonal()
   }, [])
 
   return (
     <div className="container-component-outer">
-      <h6>Personal Detail</h6>
+      <Title>Personal Detail</Title>
       {
         (!fetched) && (
           <Loading />
@@ -23,10 +32,10 @@ const PersonalDetail = ({ fetched, personal, fetchPersonal }) => {
         {
           personal.map((item, index)=>(
             <div key={index} className="container-component-inner">
-              <p>Place, Date of Birth: {item.placeBirth}, {item.dateOfBirth}</p>
-              <p>Gender: {item.gender}</p>
-              <p>Language: {item.language}</p>
-              <p>Religion: {item.religion}</p>
+              <Text>Place, Date of Birth: {item.placeBirth}, {item.dateOfBirth}</Text>
+              <Text>Gender: {item.gender}</Text>
+              <Text>Language: {item.language}</Text>
+              <Text>Religion: {item.religion}</Text>
             </div>
           ))
         }

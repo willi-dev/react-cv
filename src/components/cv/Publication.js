@@ -3,9 +3,15 @@ import { connect } from 'react-redux';
 import mapStatePublication from '../../store/cv/publication/mapStateAction';
 import dispatchStatePublication from '../../store/cv/publication/dispatchStateAction';
 import Loading from '../general/Loading';
+import Title from '../general/Title';
+import Text from '../general/Text';
 
+/**
+ * Publication
+ * publication component
+ * @author willi <https://github.com/willi-dev>
+ */
 const Publication = ({ publication, fetched, fetchPublication }) => {
-
   /**
    * useEffect
    */
@@ -15,7 +21,7 @@ const Publication = ({ publication, fetched, fetchPublication }) => {
 
   return (
     <div className="container-component-outer last">
-      <h6>Publication</h6>
+      <Title>Publication</Title>
       {
         (!fetched) && (
           <Loading />
@@ -25,9 +31,9 @@ const Publication = ({ publication, fetched, fetchPublication }) => {
         {
           publication.map((item, index) => (
             <div key={index} className="container-component-inner">
-              <p>{item.publication}</p>
-              <p>{item.description}</p>
-              <p>{item.link}</p>
+              <Text>{item.publication}</Text>
+              <Text>{item.description}</Text>
+              <Text>{item.link}</Text>
             </div>
           ))
         }
