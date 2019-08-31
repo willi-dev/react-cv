@@ -34,8 +34,8 @@ const MainProfile = ({ main, fetched, fetchMainProfile }) => {
           main.map((item, index)=>(
             <div key={index} className="container-component-inner">
               <Text>Job title: {item.jobTitle}</Text>
-              <Text>Phone: {item.phone}</Text>
-              <Text>Address: {item.address}</Text>
+              {/* <Text>Phone: {item.phone}</Text> */}
+              {/* <Text>Address: {item.address}</Text> */}
               <Text>Linkedin: <a href={item.linkedin} target="_blank">{item.linkedin}</a></Text>
               <Text>Github: <a href={item.github} target="_blank">{item.github}</a></Text>
               <Text>Blog: <a href={item.blog} target="_blank">{item.blog}</a></Text>
