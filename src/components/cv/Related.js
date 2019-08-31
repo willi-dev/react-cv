@@ -28,7 +28,7 @@ const Related = ({ related, fetched, fetchRelated }) => {
       <div className={fetched && related.length > 0 ? 'element-show': 'element-hide'} >
         {
           related.map((item, index) => (
-            <Capsule index={index}>{ item.relatedtools }</Capsule>
+            <Capsule key={index}>{ item.relatedtools }</Capsule>
           ))
         }
       </div>

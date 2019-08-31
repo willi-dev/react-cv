@@ -30,7 +30,7 @@ const Skill = ({ skill, fetched, fetchSkill }) => {
       <div className={fetched && skill.length > 0 ? 'element-show': 'element-hide'} >
         {
           skill.map((item, index) => (
-            <Capsule index={index}>{ item.skill }</Capsule>
+            <Capsule key={index}>{ item.skill }</Capsule>
           ))
         }
       </div>
