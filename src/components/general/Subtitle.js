@@ -5,6 +5,11 @@ import React from 'react'
  * subtitle component
  * @author willi <https://github.com/willi-dev>
  */
-const Subtitle = props => <p className="black-text bold-text">{ props.children }</p>
+const Subtitle = props => <p style={style} className="font-ssp">{ props.children }</p>
 
+const style = {
+  color: `black`,
+  fontWeight: `700`,
+  fontSize: `14px`
+}
 export default Subtitle

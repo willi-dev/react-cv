@@ -4,6 +4,7 @@ import mapStatePersonal from '../../store/cv/personaldetail/mapStateAction';
 import dispatchStatePersonal from '../../store/cv/personaldetail/dispatchStateAction';
 import Loading from '../general/Loading';
 import Title from '../general/Title';
+import Text from '../general/Text';
 import './Cv.css';
 
 /**
@@ -21,7 +22,7 @@ const PersonalDetail = ({ fetched, personal, fetchPersonal }) => {
 
   return (
     <div className="container-component-outer">
-      <Title text="Personal Detail"/>
+      <Title>Personal Detail</Title>
       {
         (!fetched) && (
           <Loading />
@@ -31,10 +32,10 @@ const PersonalDetail = ({ fetched, personal, fetchPersonal }) => {
         {
           personal.map((item, index)=>(
             <div key={index} className="container-component-inner">
-              <p>Place, Date of Birth: {item.placeBirth}, {item.dateOfBirth}</p>
-              <p>Gender: {item.gender}</p>
-              <p>Language: {item.language}</p>
-              <p>Religion: {item.religion}</p>
+              <Text>Place, Date of Birth: {item.placeBirth}, {item.dateOfBirth}</Text>
+              <Text>Gender: {item.gender}</Text>
+              <Text>Language: {item.language}</Text>
+              <Text>Religion: {item.religion}</Text>
             </div>
           ))
         }

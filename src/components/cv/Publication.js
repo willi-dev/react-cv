@@ -4,6 +4,7 @@ import mapStatePublication from '../../store/cv/publication/mapStateAction';
 import dispatchStatePublication from '../../store/cv/publication/dispatchStateAction';
 import Loading from '../general/Loading';
 import Title from '../general/Title';
+import Text from '../general/Text';
 
 /**
  * Publication
@@ -20,7 +21,7 @@ const Publication = ({ publication, fetched, fetchPublication }) => {
 
   return (
     <div className="container-component-outer last">
-      <Title text="Publication"/>
+      <Title>Publication</Title>
       {
         (!fetched) && (
           <Loading />
@@ -30,9 +31,9 @@ const Publication = ({ publication, fetched, fetchPublication }) => {
         {
           publication.map((item, index) => (
             <div key={index} className="container-component-inner">
-              <p>{item.publication}</p>
-              <p>{item.description}</p>
-              <p>{item.link}</p>
+              <Text>{item.publication}</Text>
+              <Text>{item.description}</Text>
+              <Text>{item.link}</Text>
             </div>
           ))
         }

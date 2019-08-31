@@ -4,6 +4,7 @@ import mapStateSkill from '../../store/cv/skill/mapStateAction';
 import dispatchStateSkill from '../../store/cv/skill/dispatchStateAction';
 import Loading from '../general/Loading';
 import Title from '../general/Title';
+import Capsule from '../general/Capsule';
 
 /**
  * Skill
@@ -20,7 +21,7 @@ const Skill = ({ skill, fetched, fetchSkill }) => {
 
   return (
     <div className="container-component-outer">
-      <Title text="Skill"/>
+      <Title>Skill</Title>
       {
         (!fetched) && (
           <Loading />
@@ -29,7 +30,7 @@ const Skill = ({ skill, fetched, fetchSkill }) => {
       <div className={fetched && skill.length > 0 ? 'element-show': 'element-hide'} >
         {
           skill.map((item, index) => (
-            <span key={index}>{item.skill} &nbsp;</span>
+            <Capsule index={index}>{ item.skill }</Capsule>
           ))
         }
       </div>

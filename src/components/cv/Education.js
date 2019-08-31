@@ -4,6 +4,8 @@ import mapStateEdu from '../../store/cv/education/mapStateAction';
 import dispatchStateEdu from '../../store/cv/education/dispatchStateAction';
 import Loading from '../general/Loading';
 import Title from '../general/Title';
+import Subtitle from '../general/Subtitle'
+import Text from '../general/Text';
 import './Cv.css';
 
 /**
@@ -22,7 +24,7 @@ const Education = ({ edu, fetched, fetchEducation }) => {
 
   return (
     <div className="container-component-outer">
-      <Title text="Education"/>
+      <Title>Education</Title>
       {
         (!fetched) && (
           <Loading />
@@ -34,8 +36,8 @@ const Education = ({ edu, fetched, fetchEducation }) => {
           dataReverse.map((item, index)=>(
             <li key={index}>
               <div className="container-component-inner">
-                <p className="black-text bold-text">{item.school} ({item.period})</p>
-                <p>{item.description}</p>
+                <Subtitle>{item.school} ({item.period})</Subtitle>
+                <Text>{item.description}</Text>
               </div>
             </li>
           ))

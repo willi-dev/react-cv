@@ -4,6 +4,8 @@ import mapStateWork from '../../store/cv/work/mapStateAction';
 import dispatchStateWork from '../../store/cv/work/dispatchStateAction';
 import Loading from '../general/Loading';
 import Title from '../general/Title';
+import Subtitle from '../general/Subtitle';
+import Text from '../general/Text';
 
 /**
  * Work
@@ -21,7 +23,9 @@ const Work = ({ work, fetched, fetchWork }) => {
 
   return (
     <div className="container-component-outer">
-      <Title text="Work Experience"/>
+      <Title>
+        Work Experience
+      </Title>
       {
         (!fetched) && (
           <Loading />
@@ -33,9 +37,9 @@ const Work = ({ work, fetched, fetchWork }) => {
           dataReverse.map((item, index) => (
             <li key={index} >
               <div className="container-component-inner">
-                <p className="black-text bold-text">{item.position} {item.period}</p>
-                <p>{item.company}</p>
-                <p>{item.description}</p>
+                <Subtitle>{item.position} {item.period}</Subtitle>
+                <Text>{item.company}</Text>
+                <Text>{item.description}</Text>
               </div>
             </li>
           ))

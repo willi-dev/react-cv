@@ -5,6 +5,7 @@ import dispatchStateProject from '../../store/cv/project/dispatchStateAction';
 import Loading from '../general/Loading';
 import Title from '../general/Title';
 import Subtitle from '../general/Subtitle';
+import Text from '../general/Text';
 
 /**
  * Project
@@ -23,7 +24,7 @@ const Project = ({ project, fetched, fetchProject }) => {
 
   return (
     <div className="container-component-outer">
-      <Title text="Project"/>
+      <Title>Project</Title>
       {
         (!fetched) && (
           <Loading />
@@ -34,12 +35,10 @@ const Project = ({ project, fetched, fetchProject }) => {
         {
           dataReverse.map((item, index) => (
             <li key={index}>
-            <div className="container-component-inner">
-              <Subtitle>
-                {item.name} {item.period} ({item.company}) 
-              </Subtitle>
-              <p>{item.description}</p>
-            </div>
+              <div className="container-component-inner">
+                <Subtitle>{item.name} {item.period} ({item.company})</Subtitle>
+                <Text>{item.description}</Text>
+              </div>
             </li>
           ))
         }

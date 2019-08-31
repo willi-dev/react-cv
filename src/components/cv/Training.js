@@ -5,6 +5,7 @@ import dispatchStateTraining from '../../store/cv/training/dispatchStateAction';
 import Loading from '../general/Loading';
 import Title from '../general/Title';
 import Subtitle from '../general/Subtitle';
+import Text from '../general/Text';
 
 /**
  * Training
@@ -22,7 +23,7 @@ const Training = ({ training, fetched, fetchTraining }) => {
 
   return (
     <div className="container-component-outer">
-      <Title text="Training"/>
+      <Title>Training</Title>
       {
         (!fetched) && (
           <Loading />
@@ -34,10 +35,8 @@ const Training = ({ training, fetched, fetchTraining }) => {
           dataReverse.map((item, index)=>(
             <li key={index}>
               <div className="container-component-inner">
-                <Subtitle>
-                  {item.name} ({item.year})
-                </Subtitle>
-                <p>{item.place}</p>
+                <Subtitle>{item.name} ({item.year})</Subtitle>
+                <Text>{item.place}</Text>
               </div>
             </li>
           ))
