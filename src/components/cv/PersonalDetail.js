@@ -5,7 +5,6 @@ import dispatchStatePersonal from '../../store/cv/personaldetail/dispatchStateAc
 import Loading from '../general/Loading';
 import Title from '../general/Title';
 import Text from '../general/Text';
-import './Cv.css';
 
 /**
  * PersonalDetail

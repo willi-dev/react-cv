@@ -5,7 +5,6 @@ import dispatchStateMain from '../../store/cv/mainprofile/dispatchStateAction';
 import Loading from '../general/Loading';
 import Title from '../general/Title'
 import Text from '../general/Text';
-import './Cv.css';
 
 /**
  * MainProfile

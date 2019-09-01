@@ -21,7 +21,7 @@ const Skill = ({ skill, fetched, fetchSkill }) => {
 
   return (
     <div className="container-component-outer">
-      <Title>Skill</Title>
+      <Title>Skills</Title>
       {
         (!fetched) && (
           <Loading />

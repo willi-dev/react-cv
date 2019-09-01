@@ -10,7 +10,6 @@ const Capsule = props => (
     <span style={{ margin: `0 auto` }} className="font-ssp">{props.children}</span>
   </span>
 )
-  
 
 const style = {
   color: `#666`,

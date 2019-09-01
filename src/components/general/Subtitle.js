@@ -10,6 +10,7 @@ const Subtitle = props => <p style={style} className="font-ssp">{ props.children
 const style = {
   color: `black`,
   fontWeight: `700`,
-  fontSize: `14px`
+  fontSize: `14px`,
+  marginBottom: `0`
 }
 export default Subtitle

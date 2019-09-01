@@ -10,7 +10,8 @@ const Text = props => <p style={style} className="font-ssp">{ props.children }</
 const style = {
   color: `#666`,
   marginTop: `2px`,
-  fontSize: `14px`
+  fontSize: `14px`,
+  marginBottom: `0`
 }
 
 export default Text;

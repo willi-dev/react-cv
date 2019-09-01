@@ -6,7 +6,6 @@ import Loading from '../general/Loading';
 import Title from '../general/Title';
 import Subtitle from '../general/Subtitle'
 import Text from '../general/Text';
-import './Cv.css';
 
 /**
  * Education
