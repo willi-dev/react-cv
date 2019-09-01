@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStatePersonal from '../../store/cv/personaldetail/mapStateAction';
-import dispatchStatePersonal from '../../store/cv/personaldetail/dispatchStateAction';
-import Loading from '../general/Loading';
-import Title from '../general/Title';
-import Text from '../general/Text';
+import mapStatePersonal from 'store/cv/personaldetail/mapStateAction';
+import dispatchStatePersonal from 'store/cv/personaldetail/dispatchStateAction';
+import Loading from 'components/general/Loading';
+import Title from 'components/general/Title';
+import Text from 'components/general/Text';
 
 /**
  * PersonalDetail

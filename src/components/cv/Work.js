@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStateWork from '../../store/cv/work/mapStateAction';
-import dispatchStateWork from '../../store/cv/work/dispatchStateAction';
-import Loading from '../general/Loading';
-import Title from '../general/Title';
-import Subtitle from '../general/Subtitle';
-import Text from '../general/Text';
+import mapStateWork from 'store/cv/work/mapStateAction';
+import dispatchStateWork from 'store/cv/work/dispatchStateAction';
+import Loading from 'components/general/Loading';
+import Title from 'components/general/Title';
+import Subtitle from 'components/general/Subtitle';
+import Text from 'components/general/Text';
 
 /**
  * Work
@@ -23,9 +23,7 @@ const Work = ({ work, fetched, fetchWork }) => {
 
   return (
     <div className="container-component-outer">
-      <Title>
-        Work Experience
-      </Title>
+      <Title>Work Experience</Title>
       {
         (!fetched) && (
           <Loading />

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStateEdu from '../../store/cv/education/mapStateAction';
-import dispatchStateEdu from '../../store/cv/education/dispatchStateAction';
-import Loading from '../general/Loading';
-import Title from '../general/Title';
-import Subtitle from '../general/Subtitle'
-import Text from '../general/Text';
+import mapStateEdu from 'store/cv/education/mapStateAction';
+import dispatchStateEdu from 'store/cv/education/dispatchStateAction';
+import Loading from 'components/general/Loading';
+import Title from 'components/general/Title';
+import Subtitle from 'components/general/Subtitle'
+import Text from 'components/general/Text';
 
 /**
  * Education
