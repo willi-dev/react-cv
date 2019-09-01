@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStateMain from '../../store/cv/mainprofile/mapStateAction';
-import dispatchStateMain from '../../store/cv/mainprofile/dispatchStateAction';
-import Loading from '../general/Loading';
-import Title from '../general/Title'
-import Text from '../general/Text';
+import mapStateMain from 'store/cv/mainprofile/mapStateAction';
+import dispatchStateMain from 'store/cv/mainprofile/dispatchStateAction';
+import Loading from 'components/general/Loading';
+import Title from 'components/general/Title'
+import Text from 'components/general/Text';
 
 /**
  * MainProfile

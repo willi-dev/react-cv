@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStateSkill from '../../store/cv/skill/mapStateAction';
-import dispatchStateSkill from '../../store/cv/skill/dispatchStateAction';
-import Loading from '../general/Loading';
-import Title from '../general/Title';
-import Capsule from '../general/Capsule';
+import mapStateSkill from 'store/cv/skill/mapStateAction';
+import dispatchStateSkill from 'store/cv/skill/dispatchStateAction';
+import Loading from 'components/general/Loading';
+import Title from 'components/general/Title';
+import Capsule from 'components/general/Capsule';
 
 /**
  * Skill

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStateTraining from '../../store/cv/training/mapStateAction';
-import dispatchStateTraining from '../../store/cv/training/dispatchStateAction';
-import Loading from '../general/Loading';
-import Title from '../general/Title';
-import Subtitle from '../general/Subtitle';
-import Text from '../general/Text';
+import mapStateTraining from 'store/cv/training/mapStateAction';
+import dispatchStateTraining from 'store/cv/training/dispatchStateAction';
+import Loading from 'components/general/Loading';
+import Title from 'components/general/Title';
+import Subtitle from 'components/general/Subtitle';
+import Text from 'components/general/Text';
 
 /**
  * Training

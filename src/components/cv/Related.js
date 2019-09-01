@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStateRelated from '../../store/cv/related/mapStateAction';
-import dispatchStateRelated from '../../store/cv/related/dispatchStateAction';
-import Loading from '../general/Loading';
-import Capsule from '../general/Capsule';
+import mapStateRelated from 'store/cv/related/mapStateAction';
+import dispatchStateRelated from 'store/cv/related/dispatchStateAction';
+import Loading from 'components/general/Loading';
+import Capsule from 'components/general/Capsule';
 
 /**
  * Related

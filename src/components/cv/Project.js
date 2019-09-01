@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import mapStateProject from '../../store/cv/project/mapStateAction';
-import dispatchStateProject from '../../store/cv/project/dispatchStateAction';
-import Loading from '../general/Loading';
-import Title from '../general/Title';
-import Subtitle from '../general/Subtitle';
-import Text from '../general/Text';
+import mapStateProject from 'store/cv/project/mapStateAction';
+import dispatchStateProject from 'store/cv/project/dispatchStateAction';
+import Loading from 'components/general/Loading';
+import Title from 'components/general/Title';
+import Subtitle from 'components/general/Subtitle';
+import Text from 'components/general/Text';
 
 /**
  * Project
