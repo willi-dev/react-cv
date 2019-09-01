@@ -29,3 +29,12 @@ ol{
 p{
   margin-top:2px;
 }
+
+@keyframes placeholderAnimate {
+  0% {
+    background-position: -650px 0;
+  }
+  100% {
+    background-position: 650px 0;
+  }
+}
