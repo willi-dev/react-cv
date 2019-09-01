@@ -6,7 +6,7 @@ import Loading from 'components/general/Loading';
 import Title from 'components/general/Title';
 import Subtitle from 'components/general/Subtitle';
 import Text from 'components/general/Text';
-
+import Listorder from 'components/general/Listorder';
 /**
  * Training
  * training component
@@ -32,13 +32,11 @@ const Training = ({ training, fetched, fetchTraining }) => {
       <div className={fetched && training.length > 0 ? 'element-show': 'element-hide'} >
         <ol>
         {
-          dataReverse.map((item, index)=>(
-            <li key={index}>
-              <div className="container-component-inner">
-                <Subtitle>{item.name} ({item.year})</Subtitle>
-                <Text>{item.place}</Text>
-              </div>
-            </li>
+          dataReverse.map((item, index) => (
+            <Listorder key={index}>
+              <Subtitle>{item.name} ({item.year})</Subtitle>
+              <Text>{item.place}</Text>
+            </Listorder>
           ))
         }
         </ol>

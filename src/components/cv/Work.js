@@ -6,6 +6,7 @@ import Loading from 'components/general/Loading';
 import Title from 'components/general/Title';
 import Subtitle from 'components/general/Subtitle';
 import Text from 'components/general/Text';
+import Listorder from 'components/general/Listorder';
 
 /**
  * Work
@@ -33,13 +34,11 @@ const Work = ({ work, fetched, fetchWork }) => {
         <ol>
         { 
           dataReverse.map((item, index) => (
-            <li key={index} >
-              <div className="container-component-inner">
-                <Subtitle>{item.position} {item.period}</Subtitle>
-                <Text>{item.company}</Text>
-                <Text>{item.description}</Text>
-              </div>
-            </li>
+            <Listorder key={index}>
+              <Subtitle>{item.position} {item.period}</Subtitle>
+              <Text>{item.company}</Text>
+              <Text>{item.description}</Text>
+            </Listorder>
           ))
         }
         </ol>

@@ -6,6 +6,7 @@ import Loading from 'components/general/Loading';
 import Title from 'components/general/Title';
 import Subtitle from 'components/general/Subtitle'
 import Text from 'components/general/Text';
+import Listorder from 'components/general/Listorder'
 
 /**
  * Education
@@ -32,13 +33,11 @@ const Education = ({ edu, fetched, fetchEducation }) => {
       <div className={fetched && edu.length > 0 ? 'element-show': 'element-hide'} >
         <ol>
         {
-          dataReverse.map((item, index)=>(
-            <li key={index}>
-              <div className="container-component-inner">
-                <Subtitle>{item.school} ({item.period})</Subtitle>
-                <Text>{item.description}</Text>
-              </div>
-            </li>
+          dataReverse.map((item, index) => (
+            <Listorder key={index}>
+              <Subtitle>{item.school} ({item.period})</Subtitle>
+              <Text>{item.description}</Text>
+            </Listorder>
           ))
         }
         </ol>

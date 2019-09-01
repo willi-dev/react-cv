@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStateMain from 'store/cv/mainprofile/mapStateAction';
 import dispatchStateMain from 'store/cv/mainprofile/dispatchStateAction';
-import Loading from 'components/general/Loading';
+// import Loading from 'components/general/Loading';
+import ContentLoading from 'components/general/ContentLoading';
 import Title from 'components/general/Title'
 import Text from 'components/general/Text';
 
@@ -25,12 +26,12 @@ const MainProfile = ({ main, fetched, fetchMainProfile }) => {
       <Title>Frontend Engineer</Title>
       {
         (!fetched) && (
-          <Loading />
+          <ContentLoading />
           )
       }
       <div className={fetched && main.length > 0 ? 'element-show': 'element-hide'} >
         {
-          main.map((item, index)=>(
+          main.map((item, index) => (
             <div key={index} className="container-component-inner">
               <Text>Job title: {item.jobTitle}</Text>
               {/* <Text>Phone: {item.phone}</Text> */}

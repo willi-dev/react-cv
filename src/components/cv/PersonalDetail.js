@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStatePersonal from 'store/cv/personaldetail/mapStateAction';
 import dispatchStatePersonal from 'store/cv/personaldetail/dispatchStateAction';
-import Loading from 'components/general/Loading';
+import ContentLoading from 'components/general/ContentLoading';
 import Title from 'components/general/Title';
 import Text from 'components/general/Text';
 
@@ -24,7 +24,7 @@ const PersonalDetail = ({ fetched, personal, fetchPersonal }) => {
       <Title>Personal Detail</Title>
       {
         (!fetched) && (
-          <Loading />
+          <ContentLoading />
           )
       }
       <div className={fetched && personal.length > 0 ? 'element-show': 'element-hide'} >

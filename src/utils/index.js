@@ -17,7 +17,19 @@ const byPropKey = ( propertyName, value ) => () => ({
   [propertyName]: value
 });
 
+/**
+ * randomVal
+ * generate random value between min max value
+ * @author willi <https://github.com/willi-dev>
+ * @param {*} min 
+ * @param {*} max 
+ */
+const randomVal = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
 export {
   getData,
-  byPropKey
+  byPropKey,
+  randomVal
 };
