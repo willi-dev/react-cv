@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStateProject from 'store/cv/project/mapStateAction';
 import dispatchStateProject from 'store/cv/project/dispatchStateAction';
-import Loading from 'components/general/Loading';
+import ListLoading from 'components/general/ListLoading';
 import Title from 'components/general/Title';
 import Subtitle from 'components/general/Subtitle';
 import Text from 'components/general/Text';
@@ -28,7 +28,7 @@ const Project = ({ project, fetched, fetchProject }) => {
       <Title>Project</Title>
       {
         (!fetched) && (
-          <Loading />
+          <ListLoading counter="18" />
           )
       }
       <div className={fetched && project.length > 0 ? 'element-show': 'element-hide'} >

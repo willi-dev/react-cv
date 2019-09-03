@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStateEdu from 'store/cv/education/mapStateAction';
 import dispatchStateEdu from 'store/cv/education/dispatchStateAction';
-import Loading from 'components/general/Loading';
+import ListLoading from 'components/general/ListLoading';
 import Title from 'components/general/Title';
 import Subtitle from 'components/general/Subtitle'
 import Text from 'components/general/Text';
@@ -27,7 +27,7 @@ const Education = ({ edu, fetched, fetchEducation }) => {
       <Title>Education</Title>
       {
         (!fetched) && (
-          <Loading />
+          <ListLoading counter="2" />
           )
       }
       <div className={fetched && edu.length > 0 ? 'element-show': 'element-hide'} >

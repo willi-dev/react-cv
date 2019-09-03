@@ -1,10 +1,10 @@
 import React from 'react';
 
-
 const style = (randomWidth) => {
   return {
     marginTop: `7px`,
-    fontSize: `12px`,
+    fontSize: `11x`,
+    lineHeight: `12px`,
     marginBottom: `0`,
     color: `transparent`,
     animationDuration: `1s`,

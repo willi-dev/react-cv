@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStateRelated from 'store/cv/related/mapStateAction';
 import dispatchStateRelated from 'store/cv/related/dispatchStateAction';
-import Loading from 'components/general/Loading';
+import ListCapsuleLoading from 'components/general/ListCapsuleLoading';
 import Capsule from 'components/general/Capsule';
 
 /**
@@ -22,7 +22,7 @@ const Related = ({ related, fetched, fetchRelated }) => {
     <div className="container-component-outer">
       {
         (!fetched) && (
-          <Loading />
+          <ListCapsuleLoading counter="12" />
           )
       }
       <div className={fetched && related.length > 0 ? 'element-show': 'element-hide'} >

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStateTraining from 'store/cv/training/mapStateAction';
 import dispatchStateTraining from 'store/cv/training/dispatchStateAction';
-import Loading from 'components/general/Loading';
+import ListLoading from 'components/general/ListLoading';
 import Title from 'components/general/Title';
 import Subtitle from 'components/general/Subtitle';
 import Text from 'components/general/Text';
@@ -26,7 +26,7 @@ const Training = ({ training, fetched, fetchTraining }) => {
       <Title>Training</Title>
       {
         (!fetched) && (
-          <Loading />
+          <ListLoading counter="4"/>
           )
       }
       <div className={fetched && training.length > 0 ? 'element-show': 'element-hide'} >

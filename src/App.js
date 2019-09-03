@@ -17,16 +17,18 @@ class App extends Component {
     return (
       <div className="App container">
         <div className="row"> 
-          <div className="col-md-6 offset-md-3">
+          <div className="col-md-6">
             <MainProfile />
             <PersonalDetail />
             <Work />
             <Skill />
             <Related />
-            <Project />
             <Education />
             <Training />
             <Publication />
+          </div>
+          <div className="col-md-6">
+            <Project />
           </div>
         </div>
       </div>

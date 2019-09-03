@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mapStateWork from 'store/cv/work/mapStateAction';
 import dispatchStateWork from 'store/cv/work/dispatchStateAction';
-import Loading from 'components/general/Loading';
+import ListLoading from 'components/general/ListLoading';
 import Title from 'components/general/Title';
 import Subtitle from 'components/general/Subtitle';
 import Text from 'components/general/Text';
@@ -27,7 +27,7 @@ const Work = ({ work, fetched, fetchWork }) => {
       <Title>Work Experience</Title>
       {
         (!fetched) && (
-          <Loading />
+          <ListLoading counter="5"/>
           )
       }
       <div className={fetched && work.length > 0 ? 'element-show': 'element-hide'} >
